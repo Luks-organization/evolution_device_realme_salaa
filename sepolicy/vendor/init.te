@@ -1,0 +1,26 @@
+allow init hal_performance_oplus_exec:file {r_file_perms execute};
+allow init hal_performance_oplus_hwservice:hwservice_manager find;
+allow init hal_fingerprint_default:process ptrace;
+allow init hal_audio_default:file rw_file_perms;
+allow init vendor_file:file { mounton };
+allow init vendor_sysfs_battery_supply:file rw_file_perms;
+allow init vendor_sysfs_otg_switch:file create_file_perms;
+allow init vendor_sysfs_usb_supply:file create_file_perms;
+allow init vendor_sysfs_graphics:file create_file_perms;
+allow init vendor_proc_display:file create_file_perms;
+allow init vendor_proc_oplus_version:file r_file_perms;
+allow init oplus_block_device:blk_file { relabelto };
+allow init oplus_block_device:lnk_file { relabelto };
+allow init mtk_hal_videotelephony_hwservice:hwservice_manager find;
+allow init sysfs_leds:file create_file_perms;
+allow init ccci_device:chr_file r_file_perms;
+allow init vtservice_hidl:fd { use };
+allow init proc:file rw_file_perms;
+allow init sysfs_mem_sleep:file rw_file_perms;
+allow init socket_device:sock_file create;
+
+get_prop(init, system_cabc_prop)
+get_prop(init, exported_default_prop)
+get_prop(init, vendor_variant_prop)
+get_prop(init, vendor_mtk_mnld_prop)
+get_prop(init, vendor_oplus_radio_prop)

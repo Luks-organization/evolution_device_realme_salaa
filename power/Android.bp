@@ -1,0 +1,21 @@
+//
+// SPDX-FileCopyrightText: The Android Open Source Project
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_static {
+    name: "libperfmgr-ext-salaa",
+    defaults: ["android.hardware.power-ndk_shared"],
+    vendor: true,
+    srcs: [
+        "power-mode.cpp",
+    ],
+    cppflags: select(soong_config_variable("power_libperfmgr", "mode_extension_lib"), {
+        any: ["-DLIBPERFMGR_EXT"],
+        default: [],
+    }),
+    shared_libs: [
+        "libbase",
+    ],
+}

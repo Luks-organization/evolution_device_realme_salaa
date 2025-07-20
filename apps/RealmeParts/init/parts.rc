@@ -1,0 +1,28 @@
+on boot
+    # OTG
+    chown system system /sys/devices/virtual/oplus_chg/usb/otg_switch
+
+    # CABC
+    chown system system /sys/kernel/oplus_display/LCM_CABC
+
+    # DC Mode
+    chown system system /sys/kernel/oplus_display/dimlayer_bl_en
+
+    # SRGB Mode
+    chown system system /sys/kernel/oplus_display/seed
+
+    # CABC off
+on property:persist.cabc_profile=0
+    write /sys/kernel/oplus_display/LCM_CABC 0
+
+    # CABC on
+on property:persist.cabc_profile=1
+    write /sys/kernel/oplus_display/LCM_CABC 1
+
+    # CABC balanced
+on property:persist.cabc_profile=2
+    write /sys/kernel/oplus_display/LCM_CABC 2
+
+    # CABC aggressive
+on property:persist.cabc_profile=3
+    write /sys/kernel/oplus_display/LCM_CABC 3

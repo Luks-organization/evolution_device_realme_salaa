@@ -1,0 +1,5 @@
+allow system_suspend sysfs_rtc:dir search;
+allow system_suspend sysfs_rtc:file r_file_perms;
+allow system_suspend sysfs_wakeup:dir search;
+allow system_suspend sysfs_wakeup:file r_file_perms;
+allow system_suspend block_device:dir search;

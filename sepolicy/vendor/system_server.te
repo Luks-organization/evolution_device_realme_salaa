@@ -1,0 +1,14 @@
+# Dolby
+hal_client_domain(system_server, hal_dms)
+
+# Fix Sepolicy
+allow system_server proc_gpufreq:dir search;
+allow system_server proc_irq:dir search;
+allow system_server vendor_proc_charger:dir search;
+allow system_server vendor_proc_display:dir search;
+allow system_server vendor_proc_oplus_sensor_als:dir search;
+allow system_server vendor_proc_oplus_sensor_feature:dir search;
+allow system_server vendor_proc_oplus_version:dir search;
+allow system_server vendor_sysfs_battery_supply:file r_file_perms;
+allow system_server vendor_sysfs_usb_supply:file r_file_perms;
+allow system_server vendor_sysfs_usb_supply:file { read open getattr setattr };

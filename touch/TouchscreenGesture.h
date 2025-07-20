@@ -1,0 +1,39 @@
+/*
+ * Copyright (C) 2024 The LineageOS Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#ifndef VENDOR_LINEAGE_TOUCH_TOUCHSCREENGESTURE_H
+#define VENDOR_LINEAGE_TOUCH_TOUCHSCREENGESTURE_H
+
+#include <aidl/vendor/lineage/touch/BnTouchscreenGesture.h>
+#include <map>
+#include <memory>
+
+namespace aidl {
+namespace vendor {
+namespace lineage {
+namespace touch {
+
+class TouchscreenGesture : public BnTouchscreenGesture {
+  public:
+    // Methods from ::aidl::vendor::lineage::touch::BnTouchscreenGesture follow.
+    ndk::ScopedAStatus getSupportedGestures(std::vector<Gesture>* _aidl_return) override;
+    ndk::ScopedAStatus setGestureEnabled(const Gesture& gesture, bool enabled) override;
+
+  private:
+    typedef struct {
+        int32_t keycode;
+        const char* name;
+        const char* path;
+    } GestureInfo;
+    static const std::map<int32_t, GestureInfo> kGestureInfoMap;  // id -> info
+};
+
+}  // namespace touch
+}  // namespace lineage
+}  // namespace vendor
+}  // namespace aidl
+
+#endif  // VENDOR_LINEAGE_TOUCH_TOUCHSCREENGESTURE_H

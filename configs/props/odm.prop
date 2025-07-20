@@ -1,0 +1,43 @@
+# Camera
+ro.camera.hfr.enable=1
+ro.camera.high.resolution.video.filter.enable=1
+ro.camera.ignore.input.stream.check.enable=1
+ro.camera.portrait.blur.level.enable=1
+ro.camera.temperature.limit=440
+ro.camera.videoeis.enable=1
+
+# Radio
+persist.sys.alwayson.enable=false
+persist.sys.assert.enabletip=0
+persist.sys.assert.panic=false
+persist.sys.assert.state=false
+persist.sys.dump=0
+persist.sys.mtk.pwkdump=0
+persist.sys.powerkeydump=0
+persist.vendor.radio.telecom.vibrate=0
+ro.oplus.connectivity.oversea=true
+ro.product.bootreg.disable.command=true
+ro.sys.reserve.integrate=true
+
+# Oplus
+persist.version.confidential=false
+ro.build.release_type=true
+ro.oplus.image.odm.type=20741
+ro.oplus.image.odm.version=version_stub.f62907f3
+ro.product.hw=20741
+ro.separate.soft=20741
+ro.version.confidential=false
+
+# Media
+odm.dirac.path=/odm/etc/dirac
+ro.odm.build.media_performance_class=31
+
+# NFC
+ro.boot.product.hardware.sku=dsds
+ro.camera.notify_nfc=1
+
+# Sensor
+persist.sys.enable_mtk_scp_dump=1
+persist.sys.oppo.fusionlight=true
+persist.sys.oppo.proximity=true
+ro.vendor.oplus.sensor.report_brightness=true

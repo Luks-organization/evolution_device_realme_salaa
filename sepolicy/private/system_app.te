@@ -1,0 +1,5 @@
+# Allow system_app to set cabc props
+set_prop(system_app, system_cabc_prop)
+
+# Call
+binder_call(system_app, system_suspend)

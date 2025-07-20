@@ -1,0 +1,17 @@
+# Dolby
+binder_call(platform_app, hal_dms_default)
+allow platform_app hal_dms_hwservice:hwservice_manager find;
+get_prop(platform_app, audio_config_prop)
+hal_client_domain(platform_app, hal_dms)
+
+# Camera
+binder_call(platform_app, mtk_hal_camera)
+binder_call(platform_app, hal_performance_oplus)
+
+allow platform_app shell_data_file:file r_file_perms;
+allow platform_app shell_data_file:dir r_dir_perms;
+allow platform_app zygote:unix_stream_socket getopt;
+allow platform_app hal_performance_oplus_hwservice:hwservice_manager find;
+
+r_dir_file(platform_app, persist_data_file)
+r_dir_file(platform_app, persist_camera_file)

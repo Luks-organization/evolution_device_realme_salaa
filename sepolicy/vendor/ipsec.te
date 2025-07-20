@@ -1,0 +1,1 @@
+allow ipsec self:capability2 block_suspend;
