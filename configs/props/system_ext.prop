@@ -1,3 +1,0 @@
-# Dex2oatAdd commentMore actions
-dalvik.vm.dex2oat64.enabled=true
-pm.dexopt.bg-dexopt=everything

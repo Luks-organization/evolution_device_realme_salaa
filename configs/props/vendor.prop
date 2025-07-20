@@ -242,7 +242,7 @@ persist.vendor.radio.smart.data.switch=1
 persist.vendor.radio.telecom.vibrate=0
 ro.telephony.default_cdma_sub=0
 ro.telephony.default_network=9,9,9,9
-ro.telephony.iwlan_operation_mode=AP-assisted
+ro.telephony.iwlan_operation_mode=legacy
 ro.vendor.md_log_memdump_wait=15
 ro.vendor.md_prop_ver=1
 ro.vendor.mtk.bt_sap_enable=true
@@ -302,7 +302,6 @@ ro.vendor.rc=/vendor/etc/init/hw/
 ro.logd.kernel=false
 
 # LMKD
-ro.lmk.downgrade_pressure=60
 ro.lmk.kill_timeout_ms=100
 ro.lmk.psi_complete_stall_ms=150
 ro.lmk.swap_free_low_percentage=20
