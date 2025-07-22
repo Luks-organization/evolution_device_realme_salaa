@@ -1,1 +1,5 @@
+allow rild vendor_oplus_radio_prop:file { read open };
+
+get_prop(rild, vendor_oplus_radio_prop)
 get_prop(rild, system_oplus_project_prop)
+set_prop(rild, vendor_nw_exported_system_prop)

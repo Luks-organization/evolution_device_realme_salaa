@@ -52,6 +52,7 @@ allow hal_power_default gbe_native:dir r_dir_perms;
 allow hal_power_default gbe_native:file r_file_perms;
 allow hal_power_default fpsgo_native:dir r_dir_perms;
 allow hal_power_default fpsgo_native:file r_file_perms;
+allow hal_power_default hal_thermal_service:service_manager find;
 
 # To get/set powerhal state property
 set_prop(hal_power_default, vendor_power_prop)

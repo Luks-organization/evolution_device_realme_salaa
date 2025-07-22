@@ -109,10 +109,6 @@ BOARD_DTBOIMG_PARTITION_SIZE := 8388608  # 8 MB
 BOARD_CACHEIMAGE_PARTITION_SIZE := 452984832  # ~432 MB
 BOARD_SUPER_PARTITION_SIZE := 9126805504  # ~8.5 GB
 
-# Optional Partition Usage
-BOARD_USES_VENDOR_DLKMIMAGE := true
-BOARD_USES_ODM_DLKIMAGE := true
-
 # Dynamic Partitions Configuration
 BOARD_SUPER_PARTITION_GROUPS := main
 BOARD_MAIN_SIZE := 9122611200  # (9126805504 - 4194304)
@@ -120,22 +116,18 @@ BOARD_MAIN_SIZE := 9122611200  # (9126805504 - 4194304)
 # List of logical partitions
 BOARD_MAIN_PARTITION_LIST := \
     system \
+    system_ext \
     vendor \
     product \
-    odm \
-    system_ext \
-    vendor_dlkm \
-    odm_dlkm
+    odm
 
 # Default filesystem types
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_ODM_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # EROFS compressor settings
 BOARD_EROFS_COMPRESSOR := lz4
@@ -151,11 +143,9 @@ BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
 
 # Output paths
 TARGET_COPY_OUT_ODM := odm
-TARGET_COPY_OUT_ODM_DLKM := odm_dlkm
+TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
-TARGET_COPY_OUT_VENDOR := vendor
-TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
@@ -169,8 +159,8 @@ TARGET_USES_MKE2FS := true
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/configs/props/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/props/vendor.prop
+TARGET_ODM_PROP += $(DEVICE_PATH)/configs/props/odm.prop
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/props/product.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/props/odm.prop
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -231,7 +221,7 @@ DEVICE_MANIFEST_NFC_FILES := $(DEVICE_PATH)/configs/vintf/manifest_nfc.xml
 # SELinux
 include device/mediatek/sepolicy_vndr/SEPolicy.mk
 include $(DEVICE_PATH)/sepolicy/SEPolicy.mk
-# SELINUX_IGNORE_NEVERALLOWS := true  # TODO: DROP THIS
+SELINUX_IGNORE_NEVERALLOWS := true  # TODO: DROP THIS
 
 # WPA Supplicant and Driver Settings
 WPA_SUPPLICANT_VERSION := VER_0_8_X

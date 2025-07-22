@@ -1,5 +1,4 @@
 # Audio
-vendor_public_prop(vendor_audioserver_prop)
 vendor_internal_prop(vendor_audio_tuning_prop)
 
 # Oplus

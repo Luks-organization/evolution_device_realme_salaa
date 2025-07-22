@@ -1,0 +1,2 @@
+allow mnld default_prop:dir search;
+allow mnld default_prop:file { read open };

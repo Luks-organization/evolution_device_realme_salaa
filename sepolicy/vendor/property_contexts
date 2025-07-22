@@ -1,6 +1,5 @@
 # Audio
 persist.vendor.audio.tuning.def_path    u:object_r:vendor_audio_tuning_prop:s0
-vendor.audiomediatek.                   u:object_r:vendor_audioserver_prop:s0
 
 # OPLUS FEATURE DIRAC
 persist.odm.dirac.acs.controller        u:object_r:vendor_oplus_prop:s0

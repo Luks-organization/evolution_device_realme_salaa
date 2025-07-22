@@ -453,6 +453,11 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/mediatek \
     hardware/oplus
 
+# Dex2oat
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    dalvik.vm.dex2oat64.enabled=true \
+    pm.dexopt.bg-dexopt=everything
+
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal_info_config/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json

@@ -34,9 +34,9 @@ allow hal_fingerprint_default oplus_hal_ormsHal_hwservice:hwservice_manager find
 allow hal_fingerprint_default hal_performance_oplus_hwservice:hwservice_manager find;
 allow hal_fingerprint_default fs_service:service_manager { add find };
 
-allow hal_fingerprint_default rootfs:dir { open read };
-allow hal_fingerprint_default system_data_root_file:dir { open read };
-allow hal_fingerprint_default vendor_data_file:dir { open read };
+allow hal_fingerprint_default rootfs:dir { read open };
+allow hal_fingerprint_default system_data_root_file:dir { read open };
+allow hal_fingerprint_default vendor_data_file:dir { read open };
 
 add_hwservice(hal_fingerprint_default, hal_fingerprint_oplus_hwservice)
 
@@ -48,4 +48,6 @@ hal_client_domain(hal_fingerprint_default, hal_health)
 get_prop(hal_fingerprint_default, system_oplus_project_prop)
 set_prop(hal_fingerprint_default, system_fingerprint_prop)
 set_prop(hal_fingerprint_default, vendor_fingerprint_prop)
+set_prop(hal_fingerprint_default, default_prop)
+
 binder_call(hal_fingerprint_default, hal_performance_oplus)
