@@ -1,11 +1,4 @@
 <compatibility-matrix version="4.0" type="framework" target-level="6">
-    <hal format="aidl" optional="true">
-        <name>android.hardware.camera.provider</name>
-        <interface>
-            <name>ICameraProvider</name>
-            <instance>internal/0</instance>
-        </interface>
-    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.audio.effect</name>
         <version>7.0</version>
@@ -19,22 +12,6 @@
         <version>7.0</version>
         <interface>
             <name>IDevicesFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-	<name>android.hardware.bluetooth.audio</name>
-	<version>2.0-1</version>
-	<interface>
-	    <name>IBluetoothAudioProvidersFactory</name>
-	    <instance>default</instance>
-	</interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.bluetooth.a2dp</name>
-        <version>1.0</version>
-        <interface>
-            <name>IBluetoothAudioOffload</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -57,14 +34,6 @@
         <name>arm.mali.platform</name>
         <interface>
             <name>ICompression</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.nfc</name>
-        <version>1.0-2</version>
-        <interface>
-            <name>INfc</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -102,7 +71,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.power</name>
-        <version>1-5</version>
+        <version>1-6</version>
         <interface>
             <name>IPower</name>
             <instance>default</instance>
@@ -118,7 +87,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.thermal</name>
-        <version>2</version>
+        <version>3</version>
         <interface>
             <name>IThermal</name>
             <instance>default</instance>
@@ -150,7 +119,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.wifi.hostapd</name>
-        <version>2</version>
+        <version>3</version>
         <interface>
             <name>IHostapd</name>
             <instance>default</instance>
@@ -158,7 +127,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.wifi.supplicant</name>
-        <version>3</version>
+        <version>4</version>
         <interface>
             <name>ISupplicant</name>
             <instance>default</instance>
@@ -174,7 +143,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.bluetooth.audio</name>
-        <version>4</version>
+        <version>5</version>
         <interface>
             <name>IBluetoothAudioProviderFactory</name>
             <instance>default</instance>
@@ -195,10 +164,6 @@
             <name>ICryptoFactory</name>
             <instance>widevine</instance>
         </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.drm</name>
-        <version>1.4</version>
         <interface>
             <name>IDrmFactory</name>
             <instance>widevine</instance>
@@ -206,6 +171,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.gnss</name>
+        <version>1</version>
         <interface>
             <name>IGnss</name>
             <instance>default</instance>
@@ -214,6 +180,14 @@
     <hal format="hidl" optional="true">
         <name>android.hardware.gnss</name>
         <version>1.0-1</version>
+        <interface>
+            <name>IGnss</name>
+            <instance>default</instance>
+            <instance>gnss_vendor</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>android.hardware.gnss</name>
         <version>2.0-1</version>
         <interface>
             <name>IGnss</name>
@@ -226,6 +200,14 @@
         <version>1-2</version>
         <interface>
             <name>IStats</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>android.hardware.graphics.composer</name>
+        <version>2.1-3</version>
+        <interface>
+            <name>IComposer</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -276,22 +258,6 @@
             <name>IOplusRadio</name>
             <instance>oplus_slot1</instance>
             <instance>oplus_slot2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.trustonic.tee</name>
-        <version>1.1</version>
-        <interface>
-            <name>ITee</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.trustonic.tee.tui</name>
-        <version>1.0</version>
-        <interface>
-            <name>ITui</name>
-            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -654,6 +620,14 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>android.hardware.nfc</name>
+        <version>1.0-2</version>
+        <interface>
+            <name>INfc</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.nxp.hardware.nfc</name>
         <version>1.1</version>
         <interface>
@@ -672,13 +646,6 @@
     <hal format="hidl">
         <name>vendor.nxp.nxpnfc</name>
         <version>1.0</version>
-        <interface>
-            <name>INxpNfc</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.nxp.nxpnfc_aidl</name>
         <interface>
             <name>INxpNfc</name>
             <instance>default</instance>
@@ -760,14 +727,6 @@
             <name>IPowerStats</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-	<name>android.hardware.graphics.composer</name>
-	<version>2.0-3</version>
-	<interface>
-		<name>IComposer</name>
-		<instance>default</instance>
-	</interface>
     </hal>
     <!-- Display -->
     <hal format="hidl" optional="true">

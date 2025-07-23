@@ -1,1 +1,2 @@
 allow ipsec self:capability2 block_suspend;
+allow ipsec self:capability dac_override;

@@ -62,6 +62,7 @@ ro.sys.usb.bicr=no
 ro.sys.usb.charging.only=yes
 ro.sys.usb.mtp.whql.enable=0
 ro.sys.usb.storage.type=mtp
+persist.sys.usb.config=mtp,adb
 
 # Storage
 persist.sys.fuse.passthrough.enable=true
@@ -78,6 +79,12 @@ ro.kernel.zio=38,108,105,16
 
 # Memory
 ro.config.per_app_memcg=false
+
+# LMKD
+persist.sys.lmk.reportkills=false
+ro.config.low_ram=
+ro.lmk.log_stats=true
+sys.lmk.reportkills=0
 
 # Misc
 persist.vendor.mdlog.flush_log_ratio=72340194296137244

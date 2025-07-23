@@ -1,6 +1,6 @@
 //
-// SPDX-FileCopyrightText: The Android Open Source Project
-// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-FileCopyrightText: 2014-2019 The Android Open Source Project
+// SPDX-FileCopyrightText: 2025 The LineageOS Project
 // SPDX-License-Identifier: Apache-2.0
 //
 
@@ -80,13 +80,6 @@ prebuilt_etc {
     src: "init.oplus.rc",
     system_ext_specific: true,
     relative_install_path: "init",
-}
-
-prebuilt_etc {
-    name: "init.recovery.mt6785.rc",
-    src: "init.recovery.mt6785.rc",
-    sub_dir: "init",
-    recovery: true,
 }
 
 prebuilt_etc {

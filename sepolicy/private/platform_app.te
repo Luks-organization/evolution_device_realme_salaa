@@ -1,1 +1,3 @@
-allow platform_app bluetooth_finder_prop:file { open read getattr map };
+allow platform_app bluetooth_finder_prop:file { read open };
+
+get_prop(platform_app, bluetooth_finder_prop)
