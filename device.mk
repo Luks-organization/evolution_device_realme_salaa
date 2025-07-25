@@ -33,7 +33,7 @@ BOARD_SHIPPING_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := 29
 
 # Extra VNDK Versions
-PRODUCT_EXTRA_VNDK_VERSIONS := 31
+PRODUCT_EXTRA_VNDK_VERSIONS := 30 31
 
 # Userdata
 PRODUCT_FS_COMPRESSION := 1
@@ -144,7 +144,6 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.a2dp@1.0.vendor \
     android.hardware.bluetooth.audio-impl
 
 # Bluetooth Library Deps
@@ -307,27 +306,25 @@ PRODUCT_PACKAGES += \
     android.hardware.usb.gadget-service.mediatek
 
 # Overlays
-PRODUCT_PACKAGES += \
-    OPlusPowerOffAlarmResTarget \
-    OPlusCarrierConfigResTarget \
-    OPlusDeviceAsWebcamResTarget \
-    OPlusFrameworksResTarget \
-    OPlusSettingsProviderResTarget \
-    OPlusSettingsProviderResRMX2151L1 \
-    OPlusSettingsProviderResRMX2155L1 \
-    OPlusSettingsProviderResRMX2156L1 \
-    OPlusSettingsProviderResRMX2161L1 \
-    OPlusSettingsProviderResRMX2163L1 \
-    OPlusSettingsResTarget \
-    OPlusSystemUIResTarget \
-    OPlusTetheringConfigResTarget \
-    OPlusWifiResTarget \
-    OPlusNfcResTarget \
-    OPlusDozeResTarget
-
-# Overlays-evolution
+PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     NcmTetheringOverlay \
+    CarrierConfigOverlay \
+    DeviceAsWebcamOverlaySalaa \
+    FrameworksResOverlaySalaa \
+    PowerOffAlarmOverlaySalaa \
+    SettingsProviderOverlayRMX2151L1 \
+    SettingsProviderOverlayRMX2155L1 \
+    SettingsProviderOverlayRMX2156L1 \
+    SettingsProviderOverlayRMX2161L1 \
+    SettingsProviderOverlayRMX2163L1 \
+    SettingsProviderOverlaySalaa \
+    TetheringResOverlaySalaa \
+    SystemUIOverlaySalaa \
+    WifiResOverlaySalaa \
+    OplusDozeOverlay \
+    NfcOverlaySalaa \
+    SettingsOverlaySalaa \
     LineageSDKResTarget \
     LineageSettingsProviderResTarget \
     SimpleDeviceConfigResTarget \
@@ -459,7 +456,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/oplus
 
 # Dex2oat
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
+PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
     pm.dexopt.bg-dexopt=everything
 

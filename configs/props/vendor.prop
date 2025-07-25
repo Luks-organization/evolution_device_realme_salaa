@@ -149,7 +149,6 @@ ro.surface_flinger.primary_display_orientation=ORIENTATION_0
 ro.surface_flinger.set_display_power_timer_ms?=1000
 ro.surface_flinger.set_idle_timer_ms?=1000
 ro.surface_flinger.set_touch_timer_ms?=1000
-ro.surface_flinger.supports_background_blur=1
 
 # DRAM
 ro.vendor.mtk_config_max_dram_size=0x800000000
@@ -276,7 +275,7 @@ persist.vendor.mtk_ct_volte_support=3
 persist.vendor.mtk_dynamic_ims_switch=1
 persist.vendor.mtk_wfc_support=1
 persist.vendor.viwifi_support=1
-persist.vendor.vilte_support=0
+persist.vendor.vilte_support=1
 persist.vendor.volte_support=1
 persist.vendor.ims_support=1
 ro.vendor.md_auto_setup_ims=1
@@ -315,7 +314,7 @@ dalvik.vm.dex2oat64.enabled=true
 pm.dexopt.bg-dexopt=everything
 
 # UVC
-ro.usb.uvc.enabled=true
+ro.usb.uvc.enabled=false
 ro.usb.uvc.payload_transfer_size=1024
 
 # USB
