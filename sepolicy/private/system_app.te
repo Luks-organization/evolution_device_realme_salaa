@@ -7,3 +7,4 @@ allow system_app tracingproxy_service:service_manager find;
 
 # Call
 binder_call(system_app, system_suspend)
+binder_call(system_app, storaged)

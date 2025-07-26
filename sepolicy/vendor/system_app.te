@@ -18,10 +18,10 @@ allow system_app vendor_proc_display:file rw_file_perms;
 allow system_app sysfs_therm:file r_file_perms;
 
 # Call
-binder_call(system_app, vold)
 binder_call(system_app, hal_audio_default)
 binder_call(system_app, hal_health_default)
 binder_call(system_app, hal_light_default)
+binder_call(system_app, hal_lineage_oplus_als_aidl)
 binder_call(system_app, hal_memtrack_default)
 binder_call(system_app, hal_gnss_default)
 binder_call(system_app, hal_thermal_default)
@@ -30,4 +30,6 @@ binder_call(system_app, hal_wifi_supplicant_default)
 binder_call(system_app, hal_gatekeeper_default)
 binder_call(system_app, hal_wifi_default)
 binder_call(system_app, mtk_hal_usb)
+binder_call(system_app, wificond)
 binder_call(system_app, netd)
+binder_call(system_app, vold)

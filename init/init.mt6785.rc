@@ -16,6 +16,10 @@ on early-init
     write /sys/class/net/ccmni1/queues/rx-0/rps_cpus "0f"
     write /sys/class/net/ccmni2/queues/rx-0/rps_cpus "0f"
 
+    # Workarround for cache
+    rm /data/resource-cache
+    rm /data/system/package_cache
+
 # We need vold early for metadata encryption
 on early-fs
     start vold

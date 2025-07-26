@@ -4,3 +4,4 @@ allow system_suspend sysfs_wakeup:dir search;
 allow system_suspend sysfs_wakeup:file r_file_perms;
 allow system_suspend block_device:dir search;
 allow system_suspend same_process_hal_file:file { read open };
+allow system_suspend same_process_hal_file:file getattr;
