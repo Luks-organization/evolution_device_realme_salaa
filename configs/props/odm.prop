@@ -6,19 +6,6 @@ ro.camera.portrait.blur.level.enable=1
 ro.camera.temperature.limit=440
 ro.camera.videoeis.enable=1
 
-# Radio
-persist.sys.alwayson.enable=false
-persist.sys.assert.enabletip=0
-persist.sys.assert.panic=false
-persist.sys.assert.state=false
-persist.sys.dump=0
-persist.sys.mtk.pwkdump=0
-persist.sys.powerkeydump=0
-persist.vendor.radio.telecom.vibrate=0
-ro.oplus.connectivity.oversea=true
-ro.product.bootreg.disable.command=true
-ro.sys.reserve.integrate=true
-
 # Oplus
 persist.version.confidential=false
 ro.build.release_type=true

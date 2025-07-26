@@ -32,9 +32,6 @@ AB_OTA_UPDATER := false
 BOARD_SHIPPING_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := 29
 
-# Extra VNDK Versions
-PRODUCT_EXTRA_VNDK_VERSIONS := 30 31
-
 # Userdata
 PRODUCT_FS_COMPRESSION := 1
 
@@ -57,7 +54,7 @@ PRODUCT_OTHER_JAVA_DEBUG_INFO := false
 WITH_DEXPREOPT_DEBUG_INFO := false
 
 # Compiler filter
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := speed-profile
 PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 
 # Inherit several Android Go Configurations (Beneficial for everyone, even on non-Go devices)
@@ -284,6 +281,31 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
 
+# Codec2 Props
+PRODUCT_VENDOR_PROPERTIES += \
+    vendor.audio.c2.preferred=true \
+    debug.c2.use_dmabufheaps=1 \
+    vendor.qc2audio.suspend.enabled=true \
+    vendor.qc2audio.per_frame.flac.dec.enabled=true
+
+# Dolby Props
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.audio.dolby.dax.support=true \
+    ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1 \
+    vendor.audio.dolby.ds2.hardbypass=false \
+    vendor.audio.dolby.ds2.enabled=false
+
+# Spatial Audio: optimize spatializer effect
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio.spatializer.effect.util_clamp_min=300
+
+# Spatial Audio: declare use of spatial audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.audio.spatializer_enabled=true \
+    ro.audio.headtracking_enabled=true \
+    ro.audio.spatializer_transaural_enabled_default=false \
+    persist.vendor.audio.spatializer.speaker_enabled=true
+
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy)
@@ -309,7 +331,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     NcmTetheringOverlay \
-    CarrierConfigOverlay \
     DeviceAsWebcamOverlaySalaa \
     FrameworksResOverlaySalaa \
     PowerOffAlarmOverlaySalaa \
@@ -412,6 +433,15 @@ PRODUCT_PACKAGES += \
     PowerOffAlarm
 
 # Radio
+PRODUCT_PACKAGES += \
+    android.hardware.radio.messaging-V5-ndk.vendor:64 \
+    android.hardware.radio.sim-V5-ndk.vendor:64 \
+    android.hardware.radio.voice-V5-ndk.vendor:64 \
+    android.hardware.radio.network-V5-ndk.vendor:64 \
+    android.hardware.radio.modem-V5-ndk.vendor:64 \
+    android.hardware.radio.data-V5-ndk.vendor:64 \
+    android.hardware.radio.config-V5-ndk.vendor:64
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
     frameworks/native/data/etc/android.hardware.telephony.radio.access.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.radio.access.xml \
@@ -473,13 +503,20 @@ $(call soong_config_set,mediatek_vibrator,supports_effects,true)
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.mediatek
 
+# VNDK
+PRODUCT_PACKAGES += \
+    libcrypto-v32 \
+    libssl-v32 \
+    libutils-v32 \
+    libstagefright_foundation_v33
+
 # Wi-Fi
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 PRODUCT_PACKAGES += \
-    android.hardware.wifi-service-lazy \
-    libwifi-hal-wrapper \
+    android.hardware.wifi-service \
+    libwifi-hal-wrapper:64 \
     wpa_supplicant \
     hostapd
 

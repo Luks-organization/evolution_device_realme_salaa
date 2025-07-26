@@ -1,2 +1,4 @@
 allow mtk_hal_c2 sysfs_boot_mode:file { read open getattr };
 allow mtk_hal_c2 default_prop:file { read open };
+
+get_prop(mtk_hal_c2, default_prop)
