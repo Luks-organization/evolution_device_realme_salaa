@@ -876,6 +876,9 @@ on property:vold.decrypt=trigger_shutdown_framework
     setprop sys.boot_completed 0
     setprop dev.bootcomplete 0
 
+on property:sys.boot_completed=1 && property:vendor.usb.uvc.function.init=1
+    write /config/usb_gadget/g1/functions/uvc.0/streaming_maxpacket ${ro.usb.uvc.payload_transfer_size}
+
 # Stop bootprof
 on property:sys.boot_completed=1
     write /proc/bootprof "0"
@@ -887,9 +890,6 @@ service bugreport /system/bin/dumpstate -d -p -B -z \
     disabled
     oneshot
     keycodes 114 115 116
-
-on property:sys.boot_completed=1 && property:vendor.usb.uvc.function.init=1
-    write /config/usb_gadget/g1/functions/uvc.0/streaming_maxpacket ${ro.usb.uvc.payload_transfer_size}
 
 #service dpfd /vendor/bin/dpfd
 #	user root
@@ -993,24 +993,6 @@ service osi /system/bin/osi
     disabled
     oneshot
     #seclabel u:r:osi:s0
-
-on property:ro.boot.product.vendor.sku=nfc
-    start vendor.nfc_hal_service
-    start mtk_secure_element_hal_service
-
-service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service
-    override
-    disabled
-    class hal
-    user nfc
-    group nfc
-
-service mtk_secure_element_hal_service /vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
-    override
-    disabled
-    class hal
-    user secure_element
-    group secure_element
 
 service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     override

@@ -1,8 +1,28 @@
 #
+# SPDX-FileCopyrightText: The Android Open Source Project
 # SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
 
-on early-init
-    exec u:r:nfc_detect:s0 -- /vendor/bin/nfc_detect.sh
-    setprop ro.boot.product.vendor.sku ${ro.vendor.device.variant}
+service vendor.nfc_detect /vendor/bin/nfc_detect.sh
+    class early_hal
+    user nfc
+    group nfc
+    oneshot
+
+service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc-service.nxp
+    class early_hal
+    user nfc
+    group nfc drmrpc system
+
+service mtk_secure_element_hal_service /vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
+    override
+    disabled
+    class hal
+    user secure_element
+    group secure_element
+
+on property:ro.vendor.device.variant=nfc
+    setprop ro.boot.product.vendor.sku nfc
+    enable vendor.nfc_hal_service
+    enable mtk_secure_element_hal_service

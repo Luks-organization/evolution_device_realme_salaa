@@ -39,16 +39,11 @@ vendor.audio.feature.compr_voip.enable=true
 vendor.audio.offload.buffer.size.kb=256
 vendor.audio.usb.iems.period_us=5000
 vendor.audio.usb.super_hifi=true
-
-# Codec2 Props
-vendor.qc2audio.per_frame.flac.dec.enabled=true
-vendor.qc2audio.suspend.enabled=true
-
-# Dolby Props
-ro.vendor.audio.dolby.dax.support=true
-ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1
-vendor.audio.dolby.ds2.enabled=false
-vendor.audio.dolby.ds2.hardbypass=false
+vendor.usbsph.dl.pcm.dump=0
+vendor.usbsph.ul.pcm.dump=0
+vendor.usbsph.srcaws.pcm.dump=0
+vendor.streamout.pcm.dump=0
+vendor.streamin.pcm.dump=0
 
 # Bluetooth
 bluetooth.device.class_of_device=90,2,12
@@ -76,6 +71,7 @@ persist.bluetooth.a2dp_offload.disabled=false
 persist.bluetooth.enable_power_stats=false
 ro.bluetooth.a2dp_offload.supported=true
 ro.vendor.mtk.bt_sap_enable=true
+ro.vendor.bt.platform=connac1x
 vendor.bluetooth.ldac.abr=true
 
 # Camera
@@ -168,7 +164,7 @@ ro.vendor.mtk_widevine_drm_l1_support=1
 ro.fastbootd.available=true
 
 # FM Radio
-persist.vendor.connsys.fm_chipid=mt6631
+persist.vendor.connsys.fm_chipid=6785
 ro.vendor.fm.platform=mt6631
 
 # Media

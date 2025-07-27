@@ -22,9 +22,6 @@ $(call inherit-product, vendor/mediatek/ims/ims.mk)
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION ?= false
 
-# Platform
-TARGET_BOARD_PLATFORM := mt6785
-
 # Update
 AB_OTA_UPDATER := false
 
@@ -312,7 +309,7 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.2-service \
+    android.hardware.nfc-service.nxp \
     com.android.nfc_extras \
     libchrome.vendor \
     Tag
