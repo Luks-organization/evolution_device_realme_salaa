@@ -253,10 +253,6 @@ PRODUCT_PACKAGES += \
     libkeystore-engine-wifi-hidl \
     libkeystore-wifi-hidl \
 
-# Secure Element
-PRODUCT_PACKAGES += \
-    android.hardware.secure_element@1.2.vendor
-
 # Media (C2)
 PRODUCT_PACKAGES += \
     android.hardware.media.c2@1.0.vendor \
@@ -309,7 +305,7 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc-service.nxp \
+    android.hardware.nfc@1.2-service \
     com.android.nfc_extras \
     libchrome.vendor \
     Tag
@@ -438,6 +434,9 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.modem-V5-ndk.vendor:64 \
     android.hardware.radio.data-V5-ndk.vendor:64 \
     android.hardware.radio.config-V5-ndk.vendor:64
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.radio.force_lte_ca=true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \

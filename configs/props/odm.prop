@@ -9,10 +9,10 @@ ro.camera.videoeis.enable=1
 # Oplus
 persist.version.confidential=false
 ro.build.release_type=true
-ro.oplus.image.odm.type=20741
+ro.oplus.image.odm.type=20682
 ro.oplus.image.odm.version=version_stub.f62907f3
-ro.product.hw=20741
-ro.separate.soft=20741
+ro.product.hw=20682
+ro.separate.soft=20682
 ro.version.confidential=false
 
 # Media

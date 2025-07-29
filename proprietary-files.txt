@@ -2328,14 +2328,15 @@ odm/etc/nfc/libnfc-nci.conf_20682:vendor/etc/libnfc-nci.conf
 odm/etc/nfc/libnfc-nxp.conf_20682:vendor/etc/libnfc-nxp.conf
 odm/etc/nfc/libnfc-nxp_RF.conf_20682:vendor/libnfc-nxp_RF.conf
 odm/etc/nfc/pnscr/libnfc-nxp-pnscr.conf:odm/etc/libnfc-nxp-pnscr.conf
-odm/etc/vintf/manifest/manifest_oplus_nfc.xml
+odm/etc/nfc/nfc_conf_ref:vendor/etc/nfc_conf_ref
+odm/etc/nfc/nfc_fw_ref:vendor/etc/nfc_fw_ref
 odm/lib/libpn553_fw.so:vendor/lib64/libpn553_fw.so
 odm/lib/libpn557_fw.so:vendor/lib64/libpn557_fw.so
 odm/lib/libsn100u_fw.so:vendor/lib64/libsn100u_fw.so
 odm/lib/libpnscr2.so
+odm/lib64/libpnscr2.so
 odm/lib64/libnxprecord.so
 odm/lib64/libnxpspeech.so
-odm/lib64/libpnscr2.so
 
 # NVRAM
 vendor/bin/hw/vendor.mediatek.hardware.nvram@1.1-service

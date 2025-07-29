@@ -1,4 +1,4 @@
 allow toolbox resourcecache_data_file:dir { rmdir search };
-allow toolbox resourcecache_data_file:dir { read open };
+allow toolbox resourcecache_data_file:dir { read open write };
 allow toolbox resourcecache_data_file:dir { getattr setattr };
 allow toolbox resourcecache_data_file:file getattr;
