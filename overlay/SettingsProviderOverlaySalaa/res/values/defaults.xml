@@ -14,7 +14,23 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License
   -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
+
+    <!-- Disable dial pad tones by default -->
+    <bool name="def_dtmf_tones_enabled">false</bool>
+
+    <!-- Enable vibrate for calls by default -->
+    <bool name="def_vibrate_when_ringing">true</bool>
+
+    <!-- Enable screen locking sounds by default -->
+    <integer name="def_lockscreen_sounds_enabled">1</integer>
+
+    <!-- Disable bluetooth by default -->
+    <bool name="def_bluetooth_on">false</bool>
+
+    <!-- 1 minute for default screen timeout -->
+    <integer name="def_screen_off_timeout">60000</integer>
+
     <!-- Disable UI touch sounds by default -->
     <bool name="def_sound_effects_enabled">false</bool>
 

@@ -1,1 +1,2 @@
-allow isolated_app app_data_file:file setattr;
+typeattribute isolated_app mlstrustedsubject;
+allow isolated_app app_data_file:file { setattr };

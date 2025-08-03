@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License
   -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
+
     <!--
         List of enabled PowerOffAlarm drivers, initialization is attempted in this order.
 
@@ -27,5 +28,5 @@
         - timerfd: exists, appears unused in userspace, but the only thing we can programatically
                    detect at build time (using device kernel headers), so this is preffered.
     -->
-    <string name="config_powerOffAlarmDrivers" translatable="false">rtc,alarm,timerfd</string>
+    <string name="config_powerOffAlarmDrivers" translatable="false">rtc,timerfd,alarm</string>
 </resources>

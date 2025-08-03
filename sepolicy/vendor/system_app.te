@@ -16,6 +16,7 @@ allow system_app vendor_sysfs_battery_supply:file rw_file_perms;
 allow system_app vendor_proc_display:dir search;
 allow system_app vendor_proc_display:file rw_file_perms;
 allow system_app sysfs_therm:file r_file_perms;
+allow system_app proc_filesystems:file r_file_perms;
 
 # Call
 binder_call(system_app, hal_audio_default)

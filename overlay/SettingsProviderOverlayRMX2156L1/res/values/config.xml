@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License
   -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
+
     <!-- Default for Settings.Global.DEVICE_NAME $1=MANUFACTURER $2=MODEL-->
     <string name="def_device_name">realme Narzo 30 4G</string>
 

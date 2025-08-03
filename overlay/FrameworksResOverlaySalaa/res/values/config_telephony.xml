@@ -17,7 +17,9 @@
 
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds.  Do not translate. -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
     <!-- Configure tcp buffer sizes per network type in the form:
          network-type:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
 

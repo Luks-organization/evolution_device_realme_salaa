@@ -271,4 +271,5 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.log.tag.BackgroundInstallControlService=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.SliderQSTileViewImpl=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.ContrastColorUtil=$(VENDOR_LOG_LEVEL) \
-    persist.log.tag.Situation=$(VENDOR_LOG_LEVEL)
+    persist.log.tag.Situation=$(VENDOR_LOG_LEVEL) \
+    persist.log.tag.Choreographer=$(VENDOR_LOG_LEVEL)

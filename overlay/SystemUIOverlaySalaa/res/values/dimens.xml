@@ -15,6 +15,7 @@
   ~ limitations under the License
   -->
 <resources>
+
     <!-- Location on the screen of the center of the fingerprint sensor. For devices with under
      display fingerprint sensors, this directly corresponds to the fingerprint sensor's location.
      For devices with sensors on the back of the device, this corresponds to the location on the

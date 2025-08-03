@@ -160,10 +160,6 @@ PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
     libmockdrmcryptoplugin
 
-# Protobuf
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-lite-3.9.1-vendorcompat
-
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
@@ -218,13 +214,6 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-service \
     android.hardware.gatekeeper@1.0-impl
 
-# GNSS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss-service.mediatek \
-    libexpat.vendor \
-    libcurl.vendor \
-    libssl.vendor
-
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.mediatek \
@@ -254,18 +243,6 @@ PRODUCT_PACKAGES += \
     libkeystore-wifi-hidl \
 
 # Media (C2)
-PRODUCT_PACKAGES += \
-    android.hardware.media.c2@1.0.vendor \
-    android.hardware.media.c2@1.1.vendor \
-    android.hardware.media.c2@1.2.vendor \
-    libcodec2_hidl@1.0.vendor \
-    libcodec2_hidl@1.1.vendor \
-    libcodec2_hidl@1.2.vendor \
-    libsfplugin_ccodec_utils.vendor \
-    libavservices_minijail.vendor \
-    libcodec2_soft_common.vendor \
-    libcodec2_vndk.vendor
-
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc)
 
@@ -324,6 +301,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     NcmTetheringOverlay \
+    OplusDozeOverlaySalaa \
     DeviceAsWebcamOverlaySalaa \
     FrameworksResOverlaySalaa \
     PowerOffAlarmOverlaySalaa \
@@ -336,7 +314,6 @@ PRODUCT_PACKAGES += \
     TetheringResOverlaySalaa \
     SystemUIOverlaySalaa \
     WifiResOverlaySalaa \
-    OplusDozeOverlay \
     NfcOverlaySalaa \
     SettingsOverlaySalaa \
     LineageSDKResTarget \
@@ -426,21 +403,13 @@ PRODUCT_PACKAGES += \
     PowerOffAlarm
 
 # Radio
-PRODUCT_PACKAGES += \
-    android.hardware.radio.messaging-V5-ndk.vendor:64 \
-    android.hardware.radio.sim-V5-ndk.vendor:64 \
-    android.hardware.radio.voice-V5-ndk.vendor:64 \
-    android.hardware.radio.network-V5-ndk.vendor:64 \
-    android.hardware.radio.modem-V5-ndk.vendor:64 \
-    android.hardware.radio.data-V5-ndk.vendor:64 \
-    android.hardware.radio.config-V5-ndk.vendor:64
-
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.radio.force_lte_ca=true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
     frameworks/native/data/etc/android.hardware.telephony.radio.access.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.radio.access.xml \
+    frameworks/native/data/etc/android.hardware.broadcastradio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.broadcastradio.xml \
     frameworks/native/data/etc/android.hardware.telephony.data.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.data.xml \
     frameworks/native/data/etc/android.hardware.telephony.calling.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.calling.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
@@ -501,8 +470,8 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 PRODUCT_PACKAGES += \
-    libcrypto-v32 \
-    libssl-v32 \
+    libbinder-v32 \
+    libhidlbase-v32 \
     libutils-v32 \
     libstagefright_foundation_v33
 

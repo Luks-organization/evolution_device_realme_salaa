@@ -41,11 +41,6 @@ on late-fs
     mount_all /vendor/etc/fstab.mt6785 --late
 
 on init
-    # Update fastcharge firmware
-    write /proc/vooc_fw_check 1
-    write /proc/ui_soc_decimal 1
-    write /proc/fastchg_fw_update 1
-
     # change lk_env permission
     chown root system /proc/lk_env
     chmod 0660 /proc/lk_env
