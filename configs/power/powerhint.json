@@ -254,15 +254,6 @@
       "ResetOnInit": true
     },
     {
-      "Name": "CDSchedtuneBoost",
-      "Path": "/dev/stune/camera-daemon/schedtune.boost",
-      "Values": [
-        "1",
-        "0"
-      ],
-      "ResetOnInit": true
-    },
-    {
       "Name": "FGBoostPerf",
       "Path": "/proc/perfmgr/boost_ctrl/eas_ctrl/perfserv_fg_boost",
       "Values": [
@@ -319,6 +310,16 @@
       ],
       "ResetOnInit": true,
       "DefaultIndex": 3
+    },
+    {
+      "Name": "CPUFreq",
+      "Path": "/proc/perfmgr/boost_ctrl/cpu_ctrl/boot_freq",
+      "Values": [
+        "0 -1 0 -1",
+        "6 -1 8 -1",
+        "-1 -1 -1 -1"
+      ],
+      "ResetOnInit": true
     },
     {
       "Name": "DRAMOppMin",
@@ -385,6 +386,15 @@
       ],
       "ResetOnInit": true,
       "DefaultIndex": 0
+    },
+    {
+      "Name": "SchedBoost",
+      "Path": "/proc/perfmgr/boost_ctrl/eas_ctrl/sched_boost",
+      "Values": [
+        "1",
+        "0"
+      ],
+      "ResetOnInit": true
     },
     {
       "Name": "GPUBlockBoost",
@@ -457,7 +467,7 @@
       "DefaultIndex": 0
     },
     {
-      "Name": "DoubleTapToWakeEnable",
+      "Name": "DoubleTapToWake",
       "Path": "/proc/touchpanel/double_tap_enable",
       "Values": [
         "0",
@@ -536,6 +546,12 @@
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 0,
       "Value": "1666000"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "CPUFreq",
+      "Duration": 0,
+      "Value": "6 -1 8 -1"
     },
     {
       "PowerHint": "INTERACTION",
@@ -641,7 +657,19 @@
     },
     {
       "PowerHint": "LAUNCH",
+      "Node": "CPUFreq",
+      "Duration": 3000,
+      "Value": "0 -1 0 -1"
+    },
+    {
+      "PowerHint": "LAUNCH",
       "Node": "DRAMOppMin",
+      "Duration": 3000,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "SchedBoost",
       "Duration": 3000,
       "Value": "1"
     },
@@ -682,6 +710,12 @@
       "Value": "50"
     },
     {
+      "PowerHint": "DOUBLE_TAP_TO_WAKE",
+      "Node": "DoubleTapToWake",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
       "PowerHint": "Flipendo",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 0,
@@ -692,12 +726,6 @@
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
       "Value": "1670000"
-    },
-    {
-      "PowerHint": "DOUBLE_TAP_TO_WAKE",
-      "Node": "DoubleTapToWakeEnable",
-      "Duration": 0,
-      "Value": "1"
     },
     {
       "PowerHint": "DEVICE_IDLE",
