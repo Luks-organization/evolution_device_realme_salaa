@@ -22,8 +22,9 @@ $(call inherit-product, vendor/mediatek/ims/ims.mk)
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION ?= false
 
-# Update
+# OTA package
 AB_OTA_UPDATER := false
+TARGET_OTA_ALLOW_NON_AB := true
 
 # Shipping API level
 BOARD_SHIPPING_API_LEVEL := 30
@@ -37,22 +38,13 @@ PRODUCT_ENABLE_UFFD_GC := true
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREBUILT_DPI := xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Boot animation
+# Display
+TARGET_SCREEN_DENSITY := 440
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
-
-# Reduce system server verbosity.
-PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
-PRODUCT_OTHER_JAVA_DEBUG_INFO := false
-
-# Dexpreopt
-WITH_DEXPREOPT_DEBUG_INFO := false
-
-# Compiler filter
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := speed-profile
-PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 
 # Inherit several Android Go Configurations (Beneficial for everyone, even on non-Go devices)
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
@@ -106,23 +98,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     RealmeParts
 
-# HWOverlays Disable
-PRODUCT_PACKAGES += \
-    DisableHWOverlaysService
-
 # Doze
 PRODUCT_PACKAGES += \
     OplusDoze
 
-# Oplus Device Service
-PRODUCT_PACKAGES += \
-    OplusDeviceService
-
 # Rcs Service
 PRODUCT_PACKAGES += \
     com.android.ims.rcsmanager \
-    RcsService \
-    PresencePolling
+    RcsProvisioning \
+    PresencePolling \
+    CarrierServices \
+    CarrierConfig \
+    Messenger \
+    RcsService
 
 # Mtk In Call Service
 PRODUCT_PACKAGES += \
@@ -138,6 +126,7 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
+    android.hardware.bluetooth-service.mediatek \
     android.hardware.bluetooth.audio-impl
 
 # Bluetooth Library Deps
@@ -176,10 +165,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.3-service \
     android.hardware.memtrack-service.mediatek-mali \
     libhwc2onfbadapter
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.1-service-salaa
 
 # ConfigStore
 PRODUCT_PACKAGES += \
@@ -220,11 +205,11 @@ PRODUCT_PACKAGES += \
     android.hardware.health-service.mediatek-recovery
 
 # Lineage Health
-$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/oplus_chg/battery/mmi_charging_enable)
-$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
-
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
+
+$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/oplus_chg/battery/mmi_charging_enable)
+$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
 
 # Light
 PRODUCT_PACKAGES += \
@@ -291,16 +276,15 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/permissions/nfc_features.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_nfc/nfc_features.xml
 
 # USB
-$(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,true)
-
 PRODUCT_PACKAGES += \
     android.hardware.usb-service.mediatek \
     android.hardware.usb.gadget-service.mediatek
 
+$(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,true)
+
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
-    NcmTetheringOverlay \
     OplusDozeOverlaySalaa \
     DeviceAsWebcamOverlaySalaa \
     FrameworksResOverlaySalaa \
@@ -352,6 +336,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
+    frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.faketouch.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.faketouch.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
@@ -386,24 +372,28 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
 
 # Power
-$(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(DEVICE_PATH):libperfmgr-ext-salaa)
-
 PRODUCT_PACKAGES += \
     android.hardware.power-service.pixel-libperfmgr \
     vendor.mediatek.hardware.mtkpower@1.2-service.stub \
     libmtkperf_client_vendor \
     libmtkperf_client
 
+$(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(DEVICE_PATH):libperfmgr-ext-salaa)
+
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/profiles/cgroups_29.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
-    $(DEVICE_PATH)/configs/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json \
     $(DEVICE_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 PRODUCT_PACKAGES += \
     PowerOffAlarm
 
+# Cgroup and task_profiles
+PRODUCT_COPY_FILES += \
+    system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
+    system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.radio.telecom.vibrate=0 \
     persist.sys.radio.force_lte_ca=true
 
 PRODUCT_COPY_FILES += \
@@ -432,8 +422,7 @@ PRODUCT_PACKAGES += \
     ueventd.mtk.rc \
     ueventd.oplus.rc \
     parts.rc \
-    nfc_detect.sh \
-    move_widevine_data.sh
+    nfc_detect.sh
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/init/init.recovery.mt6785.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.mt6785.rc
@@ -455,19 +444,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
     pm.dexopt.bg-dexopt=everything
 
-# Thermal
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/thermal_info_config/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
-
-PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.mediatek
-
-# Vibrator
-$(call soong_config_set,mediatek_vibrator,supports_effects,true)
-
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.mediatek
-
 # VNDK
 PRODUCT_PACKAGES += \
     libbinder-v32 \
@@ -475,15 +451,28 @@ PRODUCT_PACKAGES += \
     libutils-v32 \
     libstagefright_foundation_v33
 
-# Wi-Fi
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal-service.mediatek
 
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/thermal_info_config/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator-service.mediatek
+
+$(call soong_config_set,mediatek_vibrator,supports_effects,true)
+
+# Wi-Fi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     libwifi-hal-wrapper:64 \
     wpa_supplicant \
     hostapd
+
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 # Log tag
 include $(DEVICE_PATH)/configs/props/vendor_logtag.mk

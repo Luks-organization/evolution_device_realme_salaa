@@ -5,6 +5,7 @@
  */
 
 #include <vector>
+#include <string>
 #include <cstdlib>
 #include <fstream>
 #include <cstring>
@@ -19,6 +20,7 @@
 #include <sys/sysinfo.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <cutils/properties.h> 
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -26,6 +28,10 @@
 #include <fs_mgr_dm_linear.h>
 
 using android::base::ReadFileToString;
+using android::base::GetProperty;
+using android::base::Split;
+using android::base::Trim;
+using android::base::SetProperty;
 
 const char* const OPERATOR_CODE_FILE = "/proc/oplusVersion/operatorName";
 

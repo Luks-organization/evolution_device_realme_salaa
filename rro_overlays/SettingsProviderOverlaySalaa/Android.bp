@@ -1,0 +1,5 @@
+runtime_resource_overlay {
+    name: "SettingsProviderOverlaySalaa",
+    resource_dirs: ["res"],
+    vendor: true,
+}

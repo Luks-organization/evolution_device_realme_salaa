@@ -96,22 +96,7 @@
         <effect name="spatializer" library="spatializer" uuid="cc4677de-ff72-11eb-9a03-0242ac130003"/>
        	<!--Spatial Audio END-->
     </effects>
-    <postprocess>
-        <stream type="music">
-        </stream>
-        <stream type="ring">
-        </stream>
-        <stream type="alarm">
-        </stream>
-        <stream type="system">
-        </stream>
-        <stream type="voice_call">
-        </stream>
-        <stream type="notification">
-        </stream>
-        <stream type="bluetooth_sco">
-        </stream>
-    </postprocess>
+
     <!-- Audio pre processor configurations.
          The pre processor configuration is described in a "preprocess" element and consists in a
          list of elements each describing pre processor settings for a given use case or "stream".

@@ -64,8 +64,6 @@ on init
     chown radio system /proc/freqhopping/userdef
 
     # change owner
-    chown system system /proc/bootprof
-    chmod 0664 /proc/bootprof
     chown root system /proc/mtprof/cputime
     chown root system /proc/mtprof/reboot_pid
 
@@ -79,8 +77,6 @@ on init
     chown root system /proc/ccci_dump
 
 on post-fs-data
-    write /proc/bootprof "INIT:post-fs-data"
-
     chown system system /mnt/vendor/nvcfg
     chmod 0771 /mnt/vendor/nvcfg
     restorecon_recursive /mnt/vendor/nvcfg
@@ -97,6 +93,10 @@ on post-fs-data
     # AudioDump
     mkdir /data/vendor/audiohal 0771 system audio
     mkdir /data/vendor/audiohal/audio_param 0771 system audio
+
+    # Dolby
+    mkdir /data/vendor/dolby 0770 media media
+    mkdir /data/vendor/multimedia 0775 system system
 
     #Create cct mount point
     mkdir /mnt/vendor/cct
@@ -132,9 +132,6 @@ on post-fs-data
     mkdir /data/vendor/flicker
     chown root system /data/vendor/flicker
     chmod 0771 /data/vendor/flicker
-
-    # Create Audio HAL data directory
-    mkdir /data/vendor/audiohal 0771 system audio
 
     # Set SELinux security contexts on upgrade or policy update.
     restorecon_recursive /mnt/vendor/nvdata
@@ -613,24 +610,10 @@ on post-fs-data
 # End of adding by MTK drivers
 # -----------------------
 
-on zygote-start
-    write /proc/bootprof "INIT:zygote-start"
-    #ifdef OPLUS_FEATURE_TP_BSPFWUPDATE
-    #Xuhang.Li@bsp.tp.basic , 2021/08/20, add for bspFwUpdate
-    start bspFwUpdate
-    #endif/*OPLUS_FEATURE_TP_BSPFWUPDATE*/
-
 on early-boot
-    write /proc/bootprof "INIT:early-boot"
     verity_update_state
 
-    # Dolby
-    mkdir /data/vendor/dolby 0770 media media
-    mkdir /data/vendor/multimedia 0775 system system
-
 on boot
-    write /proc/bootprof "INIT:boot"
-
     # Touchpanel
     chmod 0666 /proc/touchpanel/oplus_tp_direction
     chmod 0666 /proc/touchpanel/oplus_tp_limit_enable
@@ -839,44 +822,33 @@ on boot
     chmod 660 /dev/ttyGS1
     chown system radio /dev/ttyGS1
 
-    # Power HAL
-    setprop vendor.powerhal.init 1
-
     # OTG
     write /sys/class/power_supply/usb/otg_switch 1
+
+    # Power HAL
+    setprop vendor.powerhal.init 1
 
 on property:vendor.usb.product_string=*
     setprop ro.product.marketname ${vendor.usb.product_string}
 
 on property:vold.decrypt=trigger_reset_main
-    write /proc/bootprof "INIT:vold.decrypt=trigger_reset_main"
     setprop sys.boot_completed 0
     setprop dev.bootcomplete 0
 
-on property:vold.decrypt=trigger_post_fs_data
-    write /proc/bootprof "INIT:vold.decrypt=trigger_post_fs_data"
-
 on property:vold.decrypt=trigger_restart_min_framework
-    write /proc/bootprof "INIT:vold.decrypt=trigger_restart_min_framework"
     start nvram_daemon
     start msensord
 
 on property:vold.decrypt=trigger_restart_framework
-    write /proc/bootprof "INIT:vold.decrypt=trigger_restart_framework"
     start nvram_daemon
     start msensord
 
 on property:vold.decrypt=trigger_shutdown_framework
-    write /proc/bootprof "INIT:vold.decrypt=trigger_shutdown_framework"
     setprop sys.boot_completed 0
     setprop dev.bootcomplete 0
 
 on property:sys.boot_completed=1 && property:vendor.usb.uvc.function.init=1
     write /config/usb_gadget/g1/functions/uvc.0/streaming_maxpacket ${ro.usb.uvc.payload_transfer_size}
-
-# Stop bootprof
-on property:sys.boot_completed=1
-    write /proc/bootprof "0"
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B -z \
@@ -885,40 +857,6 @@ service bugreport /system/bin/dumpstate -d -p -B -z \
     disabled
     oneshot
     keycodes 114 115 116
-
-#service dpfd /vendor/bin/dpfd
-#	user root
-#	group system media
-
-#
-#  External Modme control related services
-#
-
-#
-#  Modem related services (Begin)
-#
-##Add by T.Zh for ppp daemon
-#service pppd /system/bin/pppd file /data/misc/ppp/ppp_options
-#    user root
-#    disabled
-#    oneshot
-#
-##
-#
-#  Modem related services (End)
-#
-
-#add for power-off alarm
-#service poad /vendor/bin/poad
-#    class main
-#    user system
-#    group system
-#    oneshot
-
-#service BGW /vendor/xbin/BGW
-#	user system
-#	group gps system radio
-#	class main
 
 # Battery info
 on property:persist.vendor.mediatek.fg.disable=1
@@ -946,6 +884,7 @@ service bspFwUpdate /system_ext/bin/bspFwUpdate
     group system
     disabled
     oneshot
+    
 #endif /* OPLUS_FEATURE_TP_BSPFWUPDATE */
 # add meta_tst for ATM
 service meta_tst /vendor/bin/meta_tst
@@ -976,10 +915,6 @@ on property:vendor.mtk.md1.status=reset
 # C2 media
 on property:sys.boot_completed=1
     restart android-hardware-media-c2-hal-1-2
-
-# FPSGO FBT Game
-on boot
-    insmod /vendor/lib/modules/fpsgo.ko
 
 # VSIM service (vendor OSI)
 service osi /system/bin/osi

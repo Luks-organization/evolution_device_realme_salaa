@@ -18,25 +18,25 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # ViperFX
 $(call inherit-product-if-exists, vendor/ViperFX/ViperFX.mk)
 
-# Boot animation
-TARGET_BOOT_ANIMATION_RES := 1080
+# Evo-X flags
+BUILD_BCR := true
+EVO_BUILD_TYPE := Unofficial
+TARGET_ENABLE_BLUR := true
+TARGET_BUILD_DEVICE_AS_WEBCAM := false
+TARGET_SUPPORTS_64_BIT_APPS := true
+TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_INCLUDE_ACCORD := true
 
 # EPPE
 TARGET_DISABLE_EPPE := true
 
-# Evo-X flags
-EVO_BUILD_TYPE := Unofficial
-TARGET_INCLUDE_ACCORD := true
+# Boot animation
 TARGET_INCLUDE_BOOT_ANIMATIONS := true
-TARGET_BUILD_DEVICE_AS_WEBCAM := false
-TARGET_SUPPORTS_QUICK_TAP := true
-TARGET_SUPPORTS_64_BIT_APPS := true
-TARGET_SUPPORTS_QUICK_TAP := true
-TARGET_USES_PICO_GAPPS := true 
-BUILD_BCR := true
+TARGET_BOOT_ANIMATION_RES := 1080
 
-# Gapps
+# GMS
 WITH_GMS := true
+TARGET_USES_PICO_GAPPS := true 
 
 # Device Information
 PRODUCT_DEVICE := salaa

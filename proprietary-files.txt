@@ -409,15 +409,12 @@ vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib64/vendor.mediatek.hardware.audio@7.1.so
 
 # Bluetooth
-vendor/bin/hw/android.hardware.bluetooth@1.1-service-mediatek
 vendor/bin/autobt
 vendor/bin/bip
-vendor/etc/init/android.hardware.bluetooth@1.1-service-mediatek.rc
 vendor/etc/init/init.bip.rc
 vendor/etc/init/init.bt_drv.rc
 vendor/lib/vendor.mediatek.hardware.bluetooth.audio@2.1.so
 vendor/lib/vendor.mediatek.hardware.bluetooth.audio@2.2.so
-vendor/lib64/hw/android.hardware.bluetooth@1.1-impl-mediatek.so
 vendor/lib64/hw/vendor.mediatek.hardware.bluetooth.audio@2.1-impl.so
 vendor/lib64/hw/vendor.mediatek.hardware.bluetooth.audio@2.2-impl.so
 vendor/lib64/libbluetooth_audio_session_mediatek.so
@@ -1512,6 +1509,7 @@ vendor/lib64/vendor.mediatek.hardware.dmc@1.2.so
 
 # DRM
 odm/lib64/liboemcrypto.so
+system/bin/move_widevine_data.sh
 vendor/bin/hw/android.hardware.drm@1.4-service.widevine
 vendor/etc/init/android.hardware.drm@1.4-service.widevine.rc
 vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.4-service.widevine.xml
@@ -1542,6 +1540,7 @@ odm/lib64/libswresample.so;DISABLE_DEPS
 odm/lib64/libswscale.so;DISABLE_DEPS
 vendor/bin/hw/android.hardware.graphics.allocator@4.0-service-mediatek
 vendor/bin/hw/vendor.mediatek.hardware.pq@2.2-service
+vendor/etc/meow.cfg
 vendor/etc/init/android.hardware.graphics.allocator@4.0-service-mediatek.rc
 vendor/etc/init/vendor.mediatek.hardware.pq@2.2-service.rc
 vendor/etc/vintf/manifest/manifest_hwcomposer.xml
@@ -1580,7 +1579,6 @@ vendor/lib/libpqframework.so
 vendor/lib/libpqparamparser.so
 vendor/lib/libpqpconfig.so
 vendor/lib/libscltm.so
-vendor/lib/libudf.so
 vendor/lib/vendor.mediatek.hardware.pq@2.0.so
 vendor/lib/vendor.mediatek.hardware.pq@2.1.so
 vendor/lib/vendor.mediatek.hardware.pq@2.10.so
@@ -2397,22 +2395,6 @@ odm/etc/jdi_nt_nt36672c_dsjm_eyeprotect_data.xml
 odm/etc/tianma_nt36672c_tianma_eyeprotect_data.xml
 odm/etc/tm_nt37701_2048_tm_nt37701_42_eyeprotect_data.xml
 odm/etc/tm_nt37701_2048_tm_nt37701_42_srgb_eyeprotect_data.xml
-
-# ORMS
-#odm/bin/hw/vendor.oplus.hardware.orms.ormsHalService@1.0-service
-#odm/etc/init/vendor.oplus.hardware.orms.ormsHalService@1.0-service.rc
-#odm/etc/orms/orms_core_config.xml
-#odm/etc/vintf/manifest/manifest_oplus_orms.xml
-#odm/lib/hw/vendor.oplus.hardware.orms.ormsHalService@1.0-impl.so
-#odm/lib/libormshalclient.so
-#odm/lib/vendor.oplus.hardware.orms.ormsHalService@1.0.so
-#odm/lib/vendor.oplus.hardware.orms@1.0.so
-#odm/lib64/hwvendor.oplus.hardware.orms.ormsHalService@1.0-impl.so
-#odm/lib64/libormshalclient.so
-#odm/lib64/vendor.oplus.hardware.orms.ormsHalService@1.0.so
-#odm/lib64/vendor.oplus.hardware.orms@1.0.so
-#vendor/lib/liboppo_arcSoftBokehEngine_new.so
-#vendor/lib64/liboppo_arcSoftBokehEngine_new.so
 
 # ORMS
 #vendor/lib/liboppo_arcSoftBokehEngine_new.so

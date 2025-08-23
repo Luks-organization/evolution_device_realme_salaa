@@ -478,7 +478,7 @@
     },
     {
       "Name": "PowerHALMainState",
-      "Path": "vendor.mediatek.powerhal.state",
+      "Path": "vendor.powerhal.state",
       "Values": [
         "SUSTAINED_PERFORMANCE",
         ""

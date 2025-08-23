@@ -9,10 +9,7 @@ ro.camera.videoeis.enable=1
 # Oplus
 persist.version.confidential=false
 ro.build.release_type=true
-ro.oplus.image.odm.type=20682
 ro.oplus.image.odm.version=version_stub.f62907f3
-ro.product.hw=20682
-ro.separate.soft=20682
 ro.version.confidential=false
 
 # Media
@@ -20,7 +17,6 @@ odm.dirac.path=/odm/etc/dirac
 ro.odm.build.media_performance_class=31
 
 # NFC
-ro.boot.product.hardware.sku=dsds
 ro.camera.notify_nfc=1
 
 # Sensor

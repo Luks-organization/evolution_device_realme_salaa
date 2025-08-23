@@ -1,3 +1,5 @@
 allow untrusted_app incremental_prop:file { read open };
+allow untrusted_app rootfs:dir r_dir_perms;
+allow untrusted_app selinuxfs:file r_file_perms;
 
 get_prop(untrusted_app, incremental_prop)

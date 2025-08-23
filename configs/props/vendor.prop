@@ -25,11 +25,13 @@ ro.apk_verity.mode=2
 # Audio
 aaudio.mmap_exclusive_policy=2
 aaudio.mmap_policy=2
+persist.vendor.audio.tuning.def_path=/odm/etc/audio/audio_param/.
 persist.vendor.audiohal.aurisys.pcm_dump_on=0
 persist.vendor.audiohal.p2w_dump_on=0
 persist.vendor.audiohal.pcm_mixer_dump_on=0
-persist.vendor.audio.tuning.def_path=/odm/etc/audio/audio_param/.
-ro.config.media_vol_steps=25
+ro.mtk_audenh_support=1
+ro.mtk_audio_lossless_support=1
+ro.mtk_besloudness_support=1
 ro.vendor.mtk_audio_alac_support=1
 ro.vendor.mtk_audio_ape_support=1
 ro.vendor.mtk_audio_tuning_tool_ver=V2.2
@@ -39,11 +41,11 @@ vendor.audio.feature.compr_voip.enable=true
 vendor.audio.offload.buffer.size.kb=256
 vendor.audio.usb.iems.period_us=5000
 vendor.audio.usb.super_hifi=true
-vendor.usbsph.dl.pcm.dump=0
-vendor.usbsph.ul.pcm.dump=0
-vendor.usbsph.srcaws.pcm.dump=0
-vendor.streamout.pcm.dump=0
 vendor.streamin.pcm.dump=0
+vendor.streamout.pcm.dump=0
+vendor.usbsph.dl.pcm.dump=0
+vendor.usbsph.srcaws.pcm.dump=0
+vendor.usbsph.ul.pcm.dump=0
 
 # Bluetooth
 bluetooth.device.class_of_device=90,2,12
@@ -67,11 +69,11 @@ bluetooth.profile.pan.panu.enabled?=true
 bluetooth.profile.pbap.server.enabled?=true
 bluetooth.profile.sap.server.enabled?=true
 bluetooth.profile.vcp.controller.enabled?=true
-persist.bluetooth.a2dp_offload.disabled=false
 persist.bluetooth.enable_power_stats=false
+persist.bluetooth.a2dp_offload.disabled=false
 ro.bluetooth.a2dp_offload.supported=true
-ro.vendor.mtk.bt_sap_enable=true
 ro.vendor.bt.platform=connac1x
+ro.vendor.mtk.bt_sap_enable=true
 vendor.bluetooth.ldac.abr=true
 
 # Camera
@@ -101,61 +103,32 @@ vendor.camera.mdp.cz.enable=1
 vendor.camera.mdp.dre.enable=1
 
 # Display
-debug.hwui.skia_atrace_enabled=false
-debug.hwui.skia_tracing_enabled=false
-debug.hwui.skia_use_perfetto_track_events=false
 debug.mediatek.disp_decompress=1
-debug.renderengine.backend=skiaglthreaded
-persist.sys.sf.color_mode=9
-persist.sys.sf.color_saturation=1.0
-persist.sys.sf.native_mode=2
 persist.vendor.light.max_brightness=2047
-ro.hardware.egl=meow
-ro.opengles.version=196610
+ro.min_pointer_dur=8
+ro.mtk_display_ovl_support=1
 ro.vendor.composer_version=2.3
-ro.vendor.pq.mtk_backlight_smooth_support=1
-ro.vendor.pq.mtk_blulight_def_support=1
-ro.vendor.pq.mtk_ultra_dimming_support=0
 ro.vendor.smvr.p2batch.fhd=4
 ro.vendor.smvr.p2batch.hd=8
 ro.vendor.smvr.p2batch.vga=16
-ro.sf.blurs_are_expensive=1
+vendor.display.disable_idle_time_hdr=1
+vendor.display.disable_idle_time_video=1
 
-# Launcher
-ro.launcher.blur.appLaunch=0
+# GPU Performance
+ro.mtk_gpu_optimizations=1
+ro.mtk_perf_dds_cpu=1
 
 # SurfaceFlinger
-debug.sf.treat_170m_as_sRGB=1
-debug.sf.early.app.duration=20000000
-debug.sf.early.sf.duration=27600000
-debug.sf.earlyGl.app.duration=20000000
-debug.sf.earlyGl.sf.duration=27600000
-debug.sf.enable_transaction_tracing=false
-debug.sf.hwc.min.duration=23000000
-debug.sf.late.app.duration=20000000
-debug.sf.late.sf.duration=27600000
-debug.graphics.game_default_frame_rate.disabled=true
-debug.sf.auto_latch_unsignaled=0
-debug.sf.defer_refresh_rate_when_off=1
-debug.sf.disable_backpressure=1
-debug.sf.enable_advanced_sf_phase_offset=1
-debug.sf.enable_gl_backpressure=0
-debug.sf.enable_hwc_vds=0
-debug.sf.frame_rate_multiple_threshold=90
-debug.sf.latch_unsignaled=0
-debug.sf.predict_hwc_composition_strategy=0
-debug.sf.use_phase_offsets_as_durations=1
-debug.sf.enable_auto_power_mode=1
-ro.surface_flinger.max_frame_buffer_acquired_buffers=3
-ro.surface_flinger.protected_contents=true
 ro.surface_flinger.enable_frame_rate_override=false
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 ro.surface_flinger.primary_display_orientation=ORIENTATION_0
+ro.surface_flinger.protected_contents=true
 ro.surface_flinger.set_display_power_timer_ms=1000
 ro.surface_flinger.set_idle_timer_ms=1000
 ro.surface_flinger.set_touch_timer_ms=200
-ro.surface_flinger.uclamp.min=200
 ro.surface_flinger.supports_background_blur=1
+ro.surface_flinger.uclamp.min=200
 
 # DRAM
 ro.vendor.mtk_config_max_dram_size=0x800000000
@@ -177,14 +150,18 @@ ro.vendor.fm.platform=mt6631
 # Media
 debug.stagefright.c2inputsurface=-1
 media.c2.dmabuf.padding=3072
+ro.mtk_pq.ctrld_dpi_support=1
 ro.vendor.jpeg_decode_sw_opt=1
 ro.vendor.mml.mtk_mml_support=0
+ro.vendor.mtk_flv_playback_support=1
 ro.vendor.mtk_hdr_video_support=1
 ro.vendor.mtk_pq_color_mode=1
 ro.vendor.mtk_pq_support=2
 ro.vendor.mtk_video_hevc_enc_support=1
 ro.vendor.pq.mtk_ai_scence_pq_support=0
 ro.vendor.pq.mtk_ai_sdr_to_hdr_support=0
+ro.vendor.pq.mtk_backlight_smooth_support=1
+ro.vendor.pq.mtk_blulight_def_support=1
 ro.vendor.pq.mtk_caltm_support=1
 ro.vendor.pq.mtk_clearzoom_support=1
 ro.vendor.pq.mtk_dc_support=1
@@ -202,11 +179,13 @@ ro.vendor.pq.mtk_mdp_ccorr_support=1
 ro.vendor.pq.mtk_pq_interface_support=0
 ro.vendor.pq.mtk_pq_video_whitelist_support=1
 ro.vendor.pq.mtk_scltm_support=1
+ro.vendor.pq.mtk_ultra_dimming_support=0
 ro.vendor.pq.mtk_ultra_resolution_support=1
 ro.vendor.pq.mtk_video_transition=1
 ro.vendor.pref_scale_enable_cfg=1
 vendor.media.omx=0
 vendor.mtk.vdec.waitkeyframeforplay=9
+vendor.mtk_thumbnail_optimization=true
 
 # GPS
 ro.oplus.mtk_gps_mpe=1
@@ -219,8 +198,8 @@ ro.vendor.mtk_gps_support=1
 ro.vendor.mtk_log_hide_gps=1
 
 # Connsys
-persist.vendor.connsys.coredump.mode=2
 persist.vendor.connsys.chipid=-1
+persist.vendor.connsys.coredump.mode=2
 persist.vendor.connsys.dynamic.dump=0
 persist.vendor.connsys.patch.version=-1
 ro.vendor.connsys.dedicated.log.port=bt,wifi,gps,mcu
@@ -241,7 +220,6 @@ persist.vendor.radio.mtk_dsbp_support=2
 persist.vendor.radio.mtk_ps2_rat=L/W/G
 persist.vendor.radio.mtk_ps3_rat=G
 persist.vendor.radio.smart.data.switch=1
-persist.vendor.radio.telecom.vibrate=0
 ro.telephony.default_cdma_sub=0
 ro.telephony.default_network=9,9,9,9
 ro.telephony.iwlan_operation_mode=AP-assisted
@@ -271,6 +249,16 @@ ro.vendor.sim_me_lock_mode=3
 ro.vendor.sim_refresh_reset_by_modem=1
 telephony.active_modems.max_count=2
 telephony.lteOnCdmaDevice=1
+
+# RIL
+vendor.rild.libargs=-d /dev/ttyC0
+vendor.rild.libpath=/vendor/lib64/libmtk-ril.so
+
+# Network Optimization
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.smart_ap=1
+ro.mtk_data_speed_label=true
+ro.mtk_network_management=1
 
 # IMS
 persist.vendor.anr.enhancement=0
@@ -326,17 +314,8 @@ ro.vendor.mtk.sensor.support=yes
 # Incremental
 ro.incremental.enable=yes
 
-# SoC
-ro.soc.manufacturer=MediaTek
-ro.soc.model=MT6785
-
 # Thermal
 vendor.thermal.config=thermal_info_config.json
-
-# HWUI
-debug.hwui.target_cpu_time_percent=30
-debug.hwui.use_hint_manager=true
-ro.hwui.render_ahead=5
 
 # TEE
 ro.hardware.gatekeeper=trustonic
@@ -357,10 +336,9 @@ ro.vendor.mtk_wfd_support=1
 ro.vendor.wfd.dummy.enable=0
 ro.vendor.wfd.iframesize.level=0
 
-# System properties
-ro.product.property_source_order=odm,vendor,product,system_ext,system
-
-# MediaTek
+# Platform
+ro.soc.manufacturer=MediaTek
+ro.soc.model=MT6785
 ro.vendor.mediatek.platform=MT6785
 ro.vendor.mediatek.version.branch=alps-mp-s0.mp1.tc16sp-pr6
 ro.vendor.mediatek.version.release=alps-mp-s0.mp1.tc16sp-pr6-V1.1
@@ -384,3 +362,6 @@ ro.vendor.wlan.gen=gen4m
 ro.zram.first_wb_delay_mins=1440
 ro.zram.mark_idle_delay_mins=60
 ro.zram.periodic_wb_delay_hours=24
+
+# Charging
+ro.vendor.mtk_fast_charging_support=1
