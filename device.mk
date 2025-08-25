@@ -393,7 +393,6 @@ PRODUCT_COPY_FILES += \
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.radio.telecom.vibrate=0 \
     persist.sys.radio.force_lte_ca=true
 
 PRODUCT_COPY_FILES += \

@@ -207,6 +207,7 @@ vendor.connsys.driver.ready=no
 
 # Radio
 persist.radio.multisim.config=dsds
+persist.vendor.radio.telecom.vibrate=0
 persist.vendor.factory.GB2312=yes
 persist.vendor.md_c2k_cap_dep_check=0
 persist.vendor.mims_support=2
