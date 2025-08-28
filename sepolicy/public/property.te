@@ -18,3 +18,6 @@ system_public_prop(system_sensors_als_prop)
 
 # Realme Parts
 system_public_prop(system_cabc_prop)
+
+# RILD
+system_public_prop(system_oplus_radio_prop)

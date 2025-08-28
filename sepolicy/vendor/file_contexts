@@ -2,11 +2,23 @@
 /data/vendor/camera_update(/.*)?                                                                        u:object_r:vendor_camera_update_data_file:s0
 /mnt/vendor/persist/camera(/.*)?                                                                        u:object_r:persist_camera_file:s0
 /(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.engcamera@1\.0-service                                u:object_r:mtk_hal_camera_exec:s0
-/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.allocator@2\.0\.so                                  u:object_r:same_process_hal_file:s0
-/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.allocator@3\.0\.so                                  u:object_r:same_process_hal_file:s0
-/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.allocator@4\.0\.so                                  u:object_r:same_process_hal_file:s0
-/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.common-V2-ndk_platform\.so                          u:object_r:same_process_hal_file:s0
-/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.common-V2-ndk\.so                                   u:object_r:same_process_hal_file:s0
+
+# Graphics
+/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator@2\.0\.so                        u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator@3\.0\.so                        u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator@4\.0\.so                        u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common-V6-ndk\.so                         u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/android\.hardware\.graphics\.mapper@2\.0\.so                                           u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/android\.hardware\.graphics\.mapper@2\.1\.so                                           u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/android\.hardware\.graphics\.mapper@3\.0\.so                                           u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/android\.hardware\.graphics\.mapper@4\.0\.so                                           u:object_r:same_process_hal_file:s0
+
+# egl
+/(vendor|system/vendor)/lib(64)/egl/libGLES_mali\.so                                                    u:object_r:same_process_hal_file:s0
+/(vendor|system/vendor)/lib(64)/egl/libGLES_meow\.so                                                    u:object_r:same_process_hal_file:s0
+
+# libui
+/(vendor|system/vendor)/lib(64)?/libui\.so                                                              u:object_r:same_process_hal_file:s0
 
 # Charging
 /dev/oplus_chg                                                                                          u:object_r:oplus_charger_device:s0
@@ -90,7 +102,7 @@
 /data/vendor/dolby(/.*)?                                                                                u:object_r:vendor_data_file:s0
 
 # Dolby
-/(system/vendor|vendor)/bin/hw/vendor\.dolby\.media\.c2@1\.0-service                                    u:object_r:mediacodec_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.dolby\.media\.c2@1\.0-service                                    u:object_r:mediacodec_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service                                u:object_r:hal_dms_default_exec:s0
 
 # ORMS Hal

@@ -169,6 +169,8 @@ blob_fixups: blob_fixups_user_type = {
        .replace_needed('libhidlbase.so', 'libhidlbase-v32.so')
        .add_needed('libcamera_metadata_shim.so')
        .add_needed('libbinder-v32.so'),
+    'vendor/bin/hw/vendor.dolby.media.c2@1.0-service': blob_fixup()
+       .add_needed('libshim_dolby.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

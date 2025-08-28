@@ -57,4 +57,12 @@
     <!-- IWLAN network service class name to bind to by default. If none is specified in an overlay,
          an empty string is passed in -->
     <string name="config_wlan_network_service_class" translatable="false">com.mediatek.internal.telephony.IWlanNetworkService</string>
+
+    <!-- IWLAN network service package name to bind to by default. If none is specified in an
+         overlay, an empty string is passed in -->
+    <string name="config_wlan_network_service_package">com.android.phone</string>
+
+    <!-- IWLAN data service package name to bind to by default. If none is specified in an overlay,
+         an empty string is passed in -->
+    <string name="config_wlan_data_service_package">com.android.phone</string>
 </resources>

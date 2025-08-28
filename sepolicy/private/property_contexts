@@ -10,7 +10,6 @@ demo.far                                         u:object_r:exported_system_prop
 demo.fb                                          u:object_r:exported_system_prop:s0
 sys.multiwin_for_camera                          u:object_r:exported_system_prop:s0
 ro.oplus.market.enname                           u:object_r:exported_system_prop:s0
-ro.oplus.market.name                             u:object_r:exported_system_prop:s0
 vendor.oplus.                                    u:object_r:exported_system_prop:s0
 vendor.oppo.                                     u:object_r:exported_system_prop:s0
 ro.camera.                                       u:object_r:exported_system_prop:s0
@@ -34,14 +33,23 @@ gf.debug.                                        u:object_r:system_fingerprint_p
 persist.camera.assert.panic                      u:object_r:exported_system_prop:s0
 persist.sys.assert.panic                         u:object_r:exported_system_prop:s0
 
-# Oplus
+# Audio 
 sys.oplus.mm.                                    u:object_r:system_oplus_audio_prop:s0
 audio.tuning.def_path                            u:object_r:system_oplus_audio_prop:s0
+ro.audio.monitorWindowRotation                   u:object_r:system_oplus_audio_prop:s0
+ro.audio.monitorRotation                         u:object_r:system_oplus_audio_prop:s0
+persist.vendor.audiohal.aurisys.pcm_dump_on      u:object_r:system_oplus_audio_prop:s0
+persist.vendor.audiohal.p2w_dump_on              u:object_r:system_oplus_audio_prop:s0
+persist.vendor.audiohal.pcm_mixer_dump_on        u:object_r:system_oplus_audio_prop:s0
 
 # Market name
-ro.product.marketname                            u:object_r:exported_default_prop:s0
-vendor.usb.product_string                        u:object_r:exported_default_prop:s0
-marketname                                       u:object_r:exported_default_prop:s0
+ro.product.marketname                            u:object_r:build_prop:s0
+ro.evolution.version	                         u:object_r:build_prop:s0
+ro.oplus.market.name                             u:object_r:build_prop:s0
+ro.vendor.oplus.market.name                      u:object_r:build_prop:s0
+
+# Usb
+vendor.usb.product_string                        u:object_r:build_prop:s0
 
 # Chip name
 ro.hardware.chipname                             u:object_r:exported_system_prop:s0
@@ -53,16 +61,11 @@ ro.product.hw                                    u:object_r:system_oplus_project
 ro.separate.soft                                 u:object_r:system_oplus_project_prop:s0
 
 # SVN
-ro.build.version.svn.c                           u:object_r:system_oplus_project_prop:s0
-ro.build.version.svn                             u:object_r:system_oplus_project_prop:s0
+ro.build.version.svn                             u:object_r:exported_system_prop:s0
+ro.build.version.svn.c                           u:object_r:exported_system_prop:s0
+ro.build.version.ota                             u:object_r:exported_system_prop:s0
 
-# Dolby Sepolicy 
-ro.audio.monitorWindowRotation                   u:object_r:exported_system_prop:s0
-ro.audio.monitorRotation                         u:object_r:exported_system_prop:s0
-vendor.audio.dolby.ds2.hardbypass                u:object_r:exported_system_prop:s0
-vendor.audio.dolby.ds2.enabled                   u:object_r:exported_system_prop:s0
-
-# Radio
+# Oplus
 ro.build.display.full_id                         u:object_r:exported_system_prop:s0
 ro.build.oplus_nv_id                             u:object_r:exported_system_prop:s0
 ro.sys.reserve.integrate                         u:object_r:exported_system_prop:s0
@@ -76,14 +79,6 @@ audio.dirac.                                     u:object_r:dirac_prop:s0
 persist.audio.dirac                              u:object_r:dirac_prop:s0
 audio.dirac.logging                              u:object_r:dirac_prop:s0
 
-# Aurisys
-persist.vendor.audiohal.aurisys.pcm_dump_on      u:object_r:exported_system_prop:s0
-persist.vendor.audiohal.p2w_dump_on              u:object_r:exported_system_prop:s0
-persist.vendor.audiohal.pcm_mixer_dump_on        u:object_r:exported_system_prop:s0
-
-# Evo-X OS
-ro.evolution.version	                         u:object_r:build_prop:s0
-
 # Touch
 persist.sys.tpic.                                u:object_r:system_oplus_touch_prop:s0
 
@@ -95,4 +90,5 @@ ro.oplus.mtk_gps_mpe                             u:object_r:exported_system_prop
 ro.oplus.mtk_gps_L1L5                            u:object_r:exported_system_prop:s0
 
 # Modem
-ro.oplus.operator                                u:object_r:exported_system_prop:s0
+ro.oplus.operator                                u:object_r:system_oplus_radio_prop:s0
+persist.oplus.network.                           u:object_r:system_oplus_radio_prop:s0

@@ -1,8 +1,8 @@
 # Dolby
 binder_call(platform_app, hal_dms_default)
-allow platform_app hal_dms_hwservice:hwservice_manager find;
-get_prop(platform_app, audio_config_prop)
 hal_client_domain(platform_app, hal_dms)
+allow platform_app hal_dms_hwservice:hwservice_manager find;
+allow platform_app system_oplus_audio_prop:file { read open };
 
 # Camera
 binder_call(platform_app, mtk_hal_camera)
@@ -19,4 +19,6 @@ allow platform_app usb_uvc_enabled_prop:file { read open };
 r_dir_file(platform_app, persist_data_file)
 r_dir_file(platform_app, persist_camera_file)
 
+get_prop(platform_app, system_oplus_audio_prop)
+get_prop(platform_app, audio_config_prop)
 get_prop(platform_app, usb_uvc_enabled_prop)

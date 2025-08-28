@@ -1654,11 +1654,11 @@ system_ext/framework/com.motorola.motosignature.jar|2107a208a83a1c87165ed75d3719
 system_ext/framework/moto-checkin.jar|bcd6045d807fe25e570bfd35a5977bf75cee68a2
 system_ext/framework/moto-settings.jar|3d0b1a0ce1edaae4cf5e61f5bbab38cf3a5ed434
 system_ext/framework/moto.jar|aa5586761e334c32931e0a3dac5834b2003ee9c4
-system_ext/priv-app/MotoDolbyDax3/MotoDolbyDax3.apk|9a95996824ffe88382acdd1d584dcd38bf12be03
+system_ext/priv-app/DolbySound/DolbySound.apk
 system_ext/priv-app/MotorolaSettingsProvider/MotorolaSettingsProvider.apk|a843be3399474cca1108c33212737543afa53a56
 system_ext/priv-app/daxService/daxService.apk|194745c90064f2daa53d51aed9abdefd04a6676b
 vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service|76fe11bc5778d47f6f88f2233b6b2b2022733241
-vendor/bin/hw/vendor.dolby.media.c2@1.0-service|e85d9ddc34fb3fe6fa4fcd6bb69a06d2049f556c
+vendor/bin/hw/vendor.dolby.media.c2@1.0-service|e85d9ddc34fb3fe6fa4fcd6bb69a06d2049f556c|64cd5aa414e40476b07affd9e794cea8740b2811
 vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc|29296ebfe89b2697fec573be73cc3757fd97bed6
 vendor/etc/init/vendor.dolby.media.c2@1.0-service.rc|bc1e134139c7dd0e5b4f98952aa51c629ea66dc7
 vendor/lib/soundfx/libdlbvol.so|4430011e9603a25e06d17b635223ac9887220cef
@@ -2774,7 +2774,6 @@ vendor/etc/init/netdagent.rc
 vendor/etc/init/networksetting.rc
 vendor/etc/init/tetheroffloadservice.rc
 vendor/etc/init/wlan_assistant.rc
-vendor/etc/vintf/manifest/oplus_wifi_supplicant_device.xml
 vendor/lib/libapmonitor_vendor.so
 vendor/lib/libwo.so
 vendor/lib/vendor.mediatek.hardware.apmonitor@2.0.so
@@ -2788,4 +2787,3 @@ vendor/lib64/libwo.so
 vendor/lib64/vendor.mediatek.hardware.apmonitor@2.0.so
 vendor/lib64/vendor.mediatek.hardware.mdmonitor@1.0.so
 vendor/lib64/vendor.mediatek.hardware.netdagent@1.0.so
-vendor/lib64/vendor.oplus.hardware.wifi.supplicant@2.0.so

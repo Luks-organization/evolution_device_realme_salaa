@@ -144,8 +144,9 @@ ro.vendor.mtk_widevine_drm_l1_support=1
 ro.fastbootd.available=true
 
 # FM Radio
-persist.vendor.connsys.fm_chipid=mt6631
 ro.vendor.fm.platform=mt6631
+ro.vendor.fm.use_audio_session=true
+persist.vendor.connsys.fm_chipid=mt6631
 
 # Media
 debug.stagefright.c2inputsurface=-1

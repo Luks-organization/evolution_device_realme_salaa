@@ -59,7 +59,7 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     audio_policy.stub \
     audio.r_submix.default \
-    audio.usb.default \
+    audio.usbv2.default \
     libhapticgenerator \
     libaudioroute.vendor \
     libsndcardparser \
@@ -101,6 +101,10 @@ PRODUCT_PACKAGES += \
 # Doze
 PRODUCT_PACKAGES += \
     OplusDoze
+
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
 
 # Rcs Service
 PRODUCT_PACKAGES += \
@@ -443,13 +447,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
     pm.dexopt.bg-dexopt=everything
 
-# VNDK
-PRODUCT_PACKAGES += \
-    libbinder-v32 \
-    libhidlbase-v32 \
-    libutils-v32 \
-    libstagefright_foundation_v33
-
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal-service.mediatek
@@ -467,8 +464,12 @@ $(call soong_config_set,mediatek_vibrator,supports_effects,true)
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     libwifi-hal-wrapper:64 \
+    lib_driver_cmd_mt66xx \
     wpa_supplicant \
-    hostapd
+    libwpa_client \
+    hostapd_cli \
+    hostapd \
+    wpa_cli
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)

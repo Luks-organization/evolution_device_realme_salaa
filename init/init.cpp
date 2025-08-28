@@ -175,7 +175,6 @@ void set_device_props(void) {
         property_override("ro.build.product", device.c_str());
         property_override("ro.product.marketname", marketname.c_str());
         property_override("ro.oplus.market.name", marketname.c_str());
-        property_override("ro.oplus.market.enname", marketname.c_str());
         property_override("ro.vendor.oplus.market.name", marketname.c_str());
         property_override("ro.vendor.build.fingerprint", fingerprint.c_str());
         property_override("ro.bootimage.build.fingerprint", fingerprint.c_str());
