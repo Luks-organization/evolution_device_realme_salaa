@@ -5,7 +5,6 @@
 #
 
 DEVICE_PATH := device/realme/salaa
-VENDOR_PATH := vendor/realme/salaa
 
 # Primary Architecture (64-bit)
 TARGET_ARCH := arm64
@@ -40,16 +39,15 @@ TARGET_PROVIDES_AUDIO_EXTNS := true
 TARGET_EXCLUDES_AUDIOFX := true
 
 # Graphics
-HWUI_COMPILE_FOR_PERF := true
+TARGET_USES_HWC2 := true
+TARGET_USES_MTK_HWC2 := true
+TARGET_USES_HWC2_SYNC := true
 TARGET_USES_VULKAN := true
-TARGET_USES_ION := true
-TARGET_USES_GRALLOC4 := true
-TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE := true
-USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(VENDOR_PATH)/proprietary/vendor/lib/egl/egl.cfg
+HWUI_COMPILE_FOR_PERF := true
+BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl/egl.cfg
 
-# Sensor
-USE_SENSOR_MULTI_HAL := true
+# FM
+BOARD_HAVE_MTK_FM := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true

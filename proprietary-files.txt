@@ -1540,12 +1540,10 @@ odm/lib64/libswresample.so;DISABLE_DEPS
 odm/lib64/libswscale.so;DISABLE_DEPS
 vendor/bin/hw/android.hardware.graphics.allocator@4.0-service-mediatek
 vendor/bin/hw/vendor.mediatek.hardware.pq@2.2-service
-vendor/etc/meow.cfg
 vendor/etc/init/android.hardware.graphics.allocator@4.0-service-mediatek.rc
 vendor/etc/init/vendor.mediatek.hardware.pq@2.2-service.rc
 vendor/etc/vintf/manifest/manifest_hwcomposer.xml
 vendor/lib/egl/libGLES_mali.so;SYMLINK=vendor/lib/hw/vulkan.mt6785.so
-vendor/lib/egl/egl.cfg
 vendor/lib/egl/libGLES_meow.so
 vendor/lib/egl/libMEOW_data.so
 vendor/lib/egl/libMEOW_gift.so
@@ -1648,17 +1646,10 @@ vendor/lib64/vendor.mediatek.hardware.pq@2.8.so
 vendor/lib64/vendor.mediatek.hardware.pq@2.9.so
 
 # Dolby - from Sony v 1.3
-system_ext/app/MotoSignatureApp/MotoSignatureApp.apk|a38f716a9c8ca99ef4b46de5c8c89ee25d32da04
-system_ext/framework/com.motorola.frameworks.core.addon.jar|1ecd773b904a955bac172b32db4e4141e0bd6a1f
-system_ext/framework/com.motorola.motosignature.jar|2107a208a83a1c87165ed75d3719e2925faa37db
-system_ext/framework/moto-checkin.jar|bcd6045d807fe25e570bfd35a5977bf75cee68a2
-system_ext/framework/moto-settings.jar|3d0b1a0ce1edaae4cf5e61f5bbab38cf3a5ed434
-system_ext/framework/moto.jar|aa5586761e334c32931e0a3dac5834b2003ee9c4
-system_ext/priv-app/DolbySound/DolbySound.apk
-system_ext/priv-app/MotorolaSettingsProvider/MotorolaSettingsProvider.apk|a843be3399474cca1108c33212737543afa53a56
-system_ext/priv-app/daxService/daxService.apk|194745c90064f2daa53d51aed9abdefd04a6676b
+system_ext/priv-app/DolbySound/DolbySound.apk|d04bf21294b87e90add7174518f8e54284ab4405
+system_ext/priv-app/daxService/daxService.apk|16a751b1a903c4ab076ea60ef653240df7309223
 vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service|76fe11bc5778d47f6f88f2233b6b2b2022733241
-vendor/bin/hw/vendor.dolby.media.c2@1.0-service|e85d9ddc34fb3fe6fa4fcd6bb69a06d2049f556c|64cd5aa414e40476b07affd9e794cea8740b2811
+vendor/bin/hw/vendor.dolby.media.c2@1.0-service|64cd5aa414e40476b07affd9e794cea8740b2811
 vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc|29296ebfe89b2697fec573be73cc3757fd97bed6
 vendor/etc/init/vendor.dolby.media.c2@1.0-service.rc|bc1e134139c7dd0e5b4f98952aa51c629ea66dc7
 vendor/lib/soundfx/libdlbvol.so|4430011e9603a25e06d17b635223ac9887220cef

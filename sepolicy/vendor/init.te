@@ -20,6 +20,10 @@ allow init sysfs_leds:file create_file_perms;
 allow init sysfs_mem_sleep:file rw_file_perms;
 allow init socket_device:sock_file create;
 allow init socket_device:sock_file { setattr unlink };
+allow init proc_vm_dirty:file rw_file_perms;
+allow init proc_dirty:file rw_file_perms;
+allow init proc_drop_caches:file rw_file_perms;
+allow init proc_sched_migration_cost_ns:file rw_file_perms;
 
 get_prop(init, system_oplus_audio_prop)
 get_prop(init, system_oplus_project_prop)

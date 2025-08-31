@@ -42,7 +42,7 @@ allow system_server vendor_proc_oplus_sensor_feature:dir search;
 allow system_server vendor_proc_oplus_version:dir search;
 allow system_server vendor_proc_decimal:file getattr;
 allow system_server vendor_proc_fingerprint:file getattr;
-allow system_server vendor_proc_fw_update:file getattr;
+allow system_server vendor_proc_fastchg_fw:file getattr;
 allow system_server vendor_proc_tbatt_pwroff:file getattr;
 allow system_server vendor_sysfs_battery_supply:file r_file_perms;
 allow system_server vendor_sysfs_usb_supply:file { read open };

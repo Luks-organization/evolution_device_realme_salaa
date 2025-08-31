@@ -14,8 +14,8 @@ genfscon proc /wireless                                                         
 genfscon sysfs /class/oplus_chg                                                                         u:object_r:vendor_sysfs_usb_supply:s0
 genfscon sysfs /devices/virtual/oplus_chg                                                               u:object_r:vendor_sysfs_usb_supply:s0
 genfscon sysfs /devices/platform/extcon_usb/extcon                                                      u:object_r:sysfs_extcon:s0
-genfscon proc /fastchg_fw_update                                                                        u:object_r:vendor_proc_fw_update:s0
-genfscon proc /vooc_fw_check                                                                            u:object_r:vendor_proc_fw_update:s0
+genfscon proc /fastchg_fw_update                                                                        u:object_r:vendor_proc_fastchg_fw:s0
+genfscon proc /vooc_fw_check                                                                            u:object_r:vendor_proc_fastchg_fw:s0
 
 # Oplus Touch
 genfscon proc /touchpanel                                                                               u:object_r:vendor_proc_display:s0
@@ -60,6 +60,8 @@ genfscon proc /oplusVersion/prjName                                             
 genfscon proc /sys/kernel/sched_stune_task_threshold                                                    u:object_r:proc_sched_stune:s0 
 genfscon proc /sys/kernel/sched_assist_enabled                                                          u:object_r:proc_sched_assist:s0
 genfscon proc /sys/kernel/sched_assist_scene                                                            u:object_r:proc_sched_assist:s0
+genfscon proc /sys/vm/dirty_ratio                                                                       u:object_r:proc_dirty:s0
+genfscon proc /sys/vm/vfs_cache_pressure                                                                u:object_r:proc_drop_caches:s0
 genfscon sysfs /devices/system/cpu/cpufreq/mtk/.cluster_(min|max)_freq                                  u:object_r:sysfs_mtk_cpufreq:s0
 genfscon sysfs /kernel/gpu/gpu_(min|max)_clock                                                          u:object_r:sysfs_mtk_gpufreq:s0
 

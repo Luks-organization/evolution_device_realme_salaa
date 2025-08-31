@@ -15,7 +15,7 @@ allow hal_charger_oplus vendor_proc_batt_param:lnk_file r_file_perms;
 allow hal_charger_oplus vendor_proc_charger:file rw_file_perms;
 allow hal_charger_oplus vendor_proc_decimal:file rw_file_perms;
 allow hal_charger_oplus vendor_proc_devinfo_fastchg:file rw_file_perms;
-allow hal_charger_oplus vendor_proc_fw_update:file rw_file_perms;
+allow hal_charger_oplus vendor_proc_fastchg_fw:file rw_file_perms;
 allow hal_charger_oplus vendor_proc_tbatt_pwroff:file rw_file_perms;
 allow hal_charger_oplus vendor_proc_wireless:file rw_file_perms;
 allow hal_charger_oplus sysfs_thermal:file r_file_perms;
