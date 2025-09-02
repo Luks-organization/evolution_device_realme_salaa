@@ -254,15 +254,6 @@
       "ResetOnInit": true
     },
     {
-      "Name": "CDSchedtuneBoost",
-      "Path": "/dev/stune/camera-daemon/schedtune.boost",
-      "Values": [
-        "1",
-        "0"
-      ],
-      "ResetOnInit": true
-    },
-    {
       "Name": "FGBoostPerf",
       "Path": "/proc/perfmgr/boost_ctrl/eas_ctrl/perfserv_fg_boost",
       "Values": [
@@ -573,12 +564,6 @@
       "Node": "TASchedtuneBoost",
       "Duration": 0,
       "Value": "40"
-    },
-    {
-      "PowerHint": "INTERACTION",
-      "Node": "CDSchedtuneBoost",
-      "Duration": 1,
-      "Value": "0"
     },
     {
       "PowerHint": "INTERACTION",

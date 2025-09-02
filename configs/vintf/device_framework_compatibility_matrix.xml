@@ -103,22 +103,6 @@
         </interface>
     </hal>
     <hal format="aidl" optional="true">
-        <name>android.hardware.memtrack</name>
-        <version>1</version>
-        <interface>
-            <name>IMemtrack</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.memtrack</name>
-        <version>1.0</version>
-        <interface>
-            <name>IMemtrack</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl" optional="true">
         <name>android.hardware.power</name>
         <version>1-6</version>
         <interface>
@@ -256,30 +240,6 @@
         <version>1-2</version>
         <interface>
             <name>IStats</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.graphics.allocator</name>
-        <version>4.0</version>
-        <interface>
-            <name>IAllocator</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.graphics.mapper</name>
-        <version>4.0</version>
-        <interface>
-            <name>IMapper</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>android.hardware.graphics.composer</name>
-        <version>2.1-2</version>
-        <interface>
-            <name>IComposer</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -741,6 +701,14 @@
         <version>1.0-1</version>
         <interface>
             <name>IIrisFeature</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.mediatek.hardware.gpu</name>
+        <version>1.0</version>
+        <interface>
+            <name>IGraphicExt</name>
             <instance>default</instance>
         </interface>
     </hal>

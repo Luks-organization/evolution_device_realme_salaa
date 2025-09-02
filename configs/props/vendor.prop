@@ -69,9 +69,9 @@ bluetooth.profile.pan.panu.enabled?=true
 bluetooth.profile.pbap.server.enabled?=true
 bluetooth.profile.sap.server.enabled?=true
 bluetooth.profile.vcp.controller.enabled?=true
-persist.bluetooth.enable_power_stats=false
 persist.bluetooth.a2dp_offload.disabled=false
 ro.bluetooth.a2dp_offload.supported=true
+ro.bluetooth.powerstats.disable=true
 ro.vendor.bt.platform=connac1x
 ro.vendor.mtk.bt_sap_enable=true
 vendor.bluetooth.ldac.abr=true
@@ -128,7 +128,12 @@ ro.surface_flinger.set_display_power_timer_ms=1000
 ro.surface_flinger.set_idle_timer_ms=1000
 ro.surface_flinger.set_touch_timer_ms=200
 ro.surface_flinger.supports_background_blur=1
+ro.surface_flinger.enable_layer_caching=true
 ro.surface_flinger.uclamp.min=200
+
+# SkiaGL
+debug.renderengine.backend=skiaglthreaded
+renderthread.skia.reduceopstasksplitting=true
 
 # DRAM
 ro.vendor.mtk_config_max_dram_size=0x800000000
@@ -144,9 +149,9 @@ ro.vendor.mtk_widevine_drm_l1_support=1
 ro.fastbootd.available=true
 
 # FM Radio
+persist.vendor.connsys.fm_chipid=mt6631
 ro.vendor.fm.platform=mt6631
 ro.vendor.fm.use_audio_session=true
-persist.vendor.connsys.fm_chipid=mt6631
 
 # Media
 debug.stagefright.c2inputsurface=-1
@@ -208,7 +213,6 @@ vendor.connsys.driver.ready=no
 
 # Radio
 persist.radio.multisim.config=dsds
-persist.vendor.radio.telecom.vibrate=0
 persist.vendor.factory.GB2312=yes
 persist.vendor.md_c2k_cap_dep_check=0
 persist.vendor.mims_support=2

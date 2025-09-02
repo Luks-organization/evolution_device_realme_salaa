@@ -6,14 +6,15 @@
 
 DEVICE_PATH := device/realme/salaa
 
-# Primary Architecture (64-bit)
+# Architecture
+# Primary (64-bit)
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
 TARGET_CPU_VARIANT := cortex-a76
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 
-# Secondary Architecture (32-bit)
+# Secondary (32-bit)
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_VARIANT := cortex-a55
@@ -31,20 +32,21 @@ TARGET_BOOTLOADER_BOARD_NAME := RM6785
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
 
-# Dolby Audio
-USE_CUSTOM_AUDIO_POLICY := 1
+# Audio
+BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS := true
 AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
 TARGET_PROVIDES_AUDIO_EXTNS := true
 TARGET_EXCLUDES_AUDIOFX := true
+USE_CUSTOM_AUDIO_POLICY := 1
 
-# Graphics
-TARGET_USES_HWC2 := true
-TARGET_USES_MTK_HWC2 := true
-TARGET_USES_HWC2_SYNC := true
-TARGET_USES_VULKAN := true
+# HWUI
 HWUI_COMPILE_FOR_PERF := true
-BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl/egl.cfg
+
+# Display
+TARGET_SCREEN_DENSITY := 440
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
 
 # FM
 BOARD_HAVE_MTK_FM := true
@@ -57,8 +59,15 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_TEE_VARIANT ?= trustonic
 
 # Kernel Configuration
-BOARD_KERNEL_IMAGE_NAME := Image.gz
-BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE += androidboot.hardware=mt6785
+BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
+BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware:/odm/firmware
+BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += pm.sleep_mode=1
+BOARD_KERNEL_CMDLINE += init_on_alloc=1
+BOARD_KERNEL_CMDLINE += kpti=off
+
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -67,38 +76,26 @@ BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_KERNEL_SECOND_OFFSET := 0x00e88000
 BOARD_DTB_OFFSET := 0x0bc08000
 
-# Ramdisk
-BOARD_RAMDISK_USE_LZ4 := true
-
-# Kernel Command Line
-BOARD_KERNEL_CMDLINE := \
-    bootopt=64S3,32N2,64N2 \
-    androidboot.hardware=mt6785 \
-    androidboot.init_fatal_reboot_target=recovery \
-    firmware_class.path=/vendor/firmware \
-    loop.max_part=7 \
-    pm.sleep_mode=1 \
-    init_on_alloc=1 \
-    kpti=off
-
 # mkbootimg Arguments
-BOARD_MKBOOTIMG_ARGS := \
-    --ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
-    --second_offset $(BOARD_KERNEL_SECOND_OFFSET) \
-    --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) \
-    --dtb_offset $(BOARD_DTB_OFFSET) \
-    --header_version $(BOARD_BOOTIMG_HEADER_VERSION) \
-    --board ""
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --board ""
 
 # Kernel Build Settings
+BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_SEPARATED_DTBO := true
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_RAMDISK_USE_LZ4 := true
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/realme/salaa
 TARGET_KERNEL_CONFIG := salaa_defconfig
-TARGET_KERNEL_CLANG_VERSION := proton
-TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(TARGET_KERNEL_CLANG_VERSION)
-TARGET_KERNEL_ADDITIONAL_FLAGS += AS=llvm-as AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
-KERNEL_TOOLCHAIN := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(TARGET_KERNEL_CLANG_VERSION)/bin
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-gnu-
-TARGET_KERNEL_CROSS_COMPILE_ARM32 := arm-linux-gnueabi-
+TARGET_KERNEL_NO_GCC := true
 KERNEL_CC := CC=clang
 KERNEL_LD := LD=ld.lld
 
@@ -113,30 +110,25 @@ BOARD_SUPER_PARTITION_SIZE := 8053063680  # ~7.5 GB
 # Dynamic Partitions Configuration
 BOARD_SUPER_PARTITION_GROUPS := main
 BOARD_MAIN_SIZE := 8048869376  # (8053063680 - 4194304)
-BOARD_MAIN_PARTITION_LIST := \
-    system \
-    system_ext \
-    vendor \
-    product \
-    odm
+BOARD_MAIN_PARTITION_LIST := system system_ext vendor product odm
 
-# Default filesystem types
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+# Filesystem Types
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE ?= ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# EROFS compressor settings
+# EROFS Settings
 BOARD_EROFS_COMPRESSOR := lz4
 BOARD_EROFS_PCLUSTER_SIZE := 262144
 
-# Gapps Partitions
+# GApps Partitions
 BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
 -include vendor/lineage/config/BoardConfigReservedSize.mk
 
-# Output paths
+# Copy-Out Paths
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
@@ -147,9 +139,6 @@ BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
 # Recovery
-BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_KERNEL_SEPARATED_DTBO := true
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.mt6785
 TARGET_USES_MKE2FS := true
@@ -168,23 +157,27 @@ BOARD_AVB_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 
+# Recovery AVB
 BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
+# System AVB
 BOARD_AVB_VBMETA_SYSTEM := product system system_ext
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := 1
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
+# Vendor AVB
 BOARD_AVB_VBMETA_VENDOR := odm vendor
 BOARD_AVB_VBMETA_VENDOR_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := 1
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 3
 
+# AVB Hashtree Settings
 BOARD_AVB_SYSTEM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_OTHER_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
@@ -194,53 +187,50 @@ BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
-# MediaTek IMS
+# MediaTek Components
 TARGET_PROVIDES_MEDIATEK_IMS_STACK := true
 TARGET_PROVIDES_MTK_PROPRIETARY := true
 
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
-# SPL
-VENDOR_SECURITY_PATCH := 2025-07-05
-BOOT_SECURITY_PATCH := $(VENDOR_SECURITY_PATCH)
+# Security Patch
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # HIDL
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(DEVICE_PATH)/configs/vintf/device_framework_compatibility_matrix.xml \
     hardware/mediatek/vintf/mediatek_framework_compatibility_matrix.xml
 
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest.xml
-DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
-
 # SELinux
 include device/mediatek/sepolicy_vndr/SEPolicy.mk
 include $(DEVICE_PATH)/sepolicy/SEPolicy.mk
-SELINUX_IGNORE_NEVERALLOWS := true  # TODO: DROP THIS
+SELINUX_IGNORE_NEVERALLOWS := true  # TODO: Remove this
 
-# WPA Supplicant and Driver Settings
+# Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
 
-# Wi-Fi Firmware Paths
+# Wi-Fi Firmware
 WIFI_DRIVER_FW_PATH_PARAM := "/dev/wmtWifi"
 WIFI_DRIVER_FW_PATH_STA := "STA"
 WIFI_DRIVER_FW_PATH_AP := "AP"
 WIFI_DRIVER_FW_PATH_P2P := "P2P"
 
-# Wi-Fi Driver State Control
+# Wi-Fi Control
 WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wmtWifi"
 WIFI_DRIVER_STATE_ON := "1"
 WIFI_DRIVER_STATE_OFF := "0"
 
-# HIDL (HAL Interface Definition Language) Settings
+# HIDL Wi-Fi
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_FEATURE_AWARE := true
 
-# Inherit vendor the proprietary files
+# Vendor
 include vendor/realme/salaa/BoardConfigVendor.mk

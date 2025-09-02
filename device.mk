@@ -27,7 +27,6 @@ AB_OTA_UPDATER := false
 TARGET_OTA_ALLOW_NON_AB := true
 
 # Shipping API level
-BOARD_SHIPPING_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := 29
 
 # Userdata
@@ -40,11 +39,6 @@ PRODUCT_ENABLE_UFFD_GC := true
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
-# Display
-TARGET_SCREEN_DENSITY := 440
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
 
 # Inherit several Android Go Configurations (Beneficial for everyone, even on non-Go devices)
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
@@ -300,24 +294,24 @@ $(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
-    OplusDozeOverlaySalaa \
-    DeviceAsWebcamOverlaySalaa \
-    FrameworksResOverlaySalaa \
-    PowerOffAlarmOverlaySalaa \
-    SettingsProviderOverlayRMX2151L1 \
-    SettingsProviderOverlayRMX2155L1 \
-    SettingsProviderOverlayRMX2156L1 \
-    SettingsProviderOverlayRMX2161L1 \
-    SettingsProviderOverlayRMX2163L1 \
-    TetheringResOverlaySalaa \
-    SystemUIOverlaySalaa \
-    WifiResOverlaySalaa \
-    NfcOverlaySalaa \
-    SettingsOverlaySalaa \
-    LineageSDKResTarget \
-    LineageSettingsProviderResTarget \
     SimpleDeviceConfigResTarget \
-    ApertureResTarget
+    LineageSettingsProviderOverlay \
+    SettingsProviderOverlayR7 \
+    SettingsProviderOverlayNarzo30 \
+    SettingsProviderOverlayNarzo20Pro \
+    SettingsProviderOverlay \
+    FrameworkResOverlayPlatform \
+    TetheringConfigOverlay \
+    DeviceAsWebcamOverlay \
+    SystemUIOverlayPlatform \
+    SettingsOverlayPlatform \
+    DeviceAsWebcamOverlay \
+    TetheringConfigOverlay \
+    ApertureResOverlay \
+    LineageSDKOverlay \
+    OplusDozeOverlay \
+    WifiOverlay \
+    NfcOverlay \
 
 # Public libraries
 PRODUCT_COPY_FILES += \
@@ -374,7 +368,16 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2020-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml \
+    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
+    frameworks/native/data/etc/android.hardware.telephony.radio.access.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.radio.access.xml \
+    frameworks/native/data/etc/android.hardware.telephony.data.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.data.xml \
+    frameworks/native/data/etc/android.hardware.telephony.calling.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.calling.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
+    frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml \
+    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -382,8 +385,6 @@ PRODUCT_PACKAGES += \
     vendor.mediatek.hardware.mtkpower@1.2-service.stub \
     libmtkperf_client_vendor \
     libmtkperf_client
-
-$(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(DEVICE_PATH):libperfmgr-ext-salaa)
 
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
@@ -399,18 +400,6 @@ PRODUCT_COPY_FILES += \
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.radio.force_lte_ca=true
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
-    frameworks/native/data/etc/android.hardware.telephony.radio.access.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.radio.access.xml \
-    frameworks/native/data/etc/android.hardware.broadcastradio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.broadcastradio.xml \
-    frameworks/native/data/etc/android.hardware.telephony.data.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.data.xml \
-    frameworks/native/data/etc/android.hardware.telephony.calling.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.calling.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
-    frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -477,6 +466,9 @@ PRODUCT_COPY_FILES += \
 
 # Log tag
 include $(DEVICE_PATH)/configs/props/vendor_logtag.mk
+
+# DoubleTapToWake
+$(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(DEVICE_PATH):libperfmgr-ext-salaa)
 
 # Init
 $(call soong_config_set,libinit,vendor_init_lib,//$(DEVICE_PATH):libinit_salaa)

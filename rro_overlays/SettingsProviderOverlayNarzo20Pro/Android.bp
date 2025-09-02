@@ -1,0 +1,5 @@
+runtime_resource_overlay {
+    name: "SettingsProviderOverlayNarzo20Pro",
+    resource_dirs: ["res"],
+    vendor: true,
+}

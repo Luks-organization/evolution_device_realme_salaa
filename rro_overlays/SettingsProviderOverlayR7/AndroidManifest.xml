@@ -5,13 +5,16 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.protonaosp.deviceconfig.salaa">
+    package="com.android.providers.settings.overlay.r7">
 
     <application android:hasCode="false" />
 
     <overlay
         android:isStatic="true"
         android:priority="100"
-        android:targetPackage="org.protonaosp.deviceconfig" />
+        android:requiredSystemPropertyName="ro.vendor.device"
+        android:requiredSystemPropertyValue="+(RMX2151L1|RMX2153L1|RMX2155L1)"
+        android:targetPackage="com.android.providers.settings"
+        android:targetName="SettingsProvider" />
 
 </manifest>

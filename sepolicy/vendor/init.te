@@ -15,7 +15,6 @@ allow init mtk_hal_videotelephony_hwservice:hwservice_manager find;
 allow init ccci_device:chr_file r_file_perms;
 allow init vtservice_hidl:fd { use };
 allow init proc:file rw_file_perms;
-allow init proc_vm_dirty:file w_file_perms;
 allow init sysfs_leds:file create_file_perms;
 allow init sysfs_mem_sleep:file rw_file_perms;
 allow init socket_device:sock_file create;

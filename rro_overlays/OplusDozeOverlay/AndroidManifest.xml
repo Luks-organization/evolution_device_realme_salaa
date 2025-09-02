@@ -5,13 +5,14 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.protonaosp.deviceconfig.salaa">
+    package="org.lineageos.settings.doze.overlay">
 
     <application android:hasCode="false" />
 
-    <overlay
+    <overlay 
         android:isStatic="true"
-        android:priority="100"
-        android:targetPackage="org.protonaosp.deviceconfig" />
+        android:priority="600"
+        android:targetPackage="com.android.settings"
+        android:targetName="Settings" />
 
 </manifest>
