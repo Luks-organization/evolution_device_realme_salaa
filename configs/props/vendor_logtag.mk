@@ -5,6 +5,8 @@ VENDOR_LOG_LEVEL=S
 endif
 
 PRODUCT_VENDOR_PROPERTIES += \
+    persist.log.tag.ActivityManager=$(VENDOR_LOG_LEVEL_I) \
+    persist.log.tag.BluetoothPowerStatCollector=$(VENDOR_LOG_LEVEL_I) \
     persist.log.tag.RILMUXD=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RfxMclDisThread=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RfxCloneMgr=$(VENDOR_LOG_LEVEL) \
@@ -115,6 +117,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     persist.log.tag.GsmCdmaPhone=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.RILMD2-SS=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.CapaSwitch=$(VENDOR_LOG_LEVEL) \
+    persist.log.tag.DisplayModeController=$(VENDOR_LOG_LEVEL_I) \
     persist.log.tag.DSSelector=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.DSSelectorOm=$(VENDOR_LOG_LEVEL) \
     persist.log.tag.DSSelectorOP01=$(VENDOR_LOG_LEVEL) \

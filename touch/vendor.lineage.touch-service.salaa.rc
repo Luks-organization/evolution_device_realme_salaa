@@ -24,7 +24,6 @@ on boot
     chown system system /proc/touchpanel/right_swipe_enable
     chown system system /proc/touchpanel/up_arrow_enable
     chown system system /proc/touchpanel/up_swipe_enable
-    chown system system /proc/touchpanel/game_switch_enable
 
 service vendor.touch-hal /vendor/bin/hw/vendor.lineage.touch-service.salaa
     class hal

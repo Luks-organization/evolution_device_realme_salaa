@@ -1,5 +1,0 @@
-runtime_resource_overlay {
-    name: "SystemUIOverlayPlatform",
-    resource_dirs: ["res"],
-    product_specific: true
-}

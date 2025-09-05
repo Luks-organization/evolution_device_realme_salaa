@@ -13,28 +13,22 @@ on boot
     chown system system /sys/class/leds/vibrator/vmax
     chmod 0660 /sys/class/leds/vibrator/vmax
 
-    # Dalvik configuration
-on post-fs && property:ro.vendor.hw.ram=4GB
-    setprop dalvik.vm.heapstartsize 8m
-    setprop dalvik.vm.heapgrowthlimit 192m
-    setprop dalvik.vm.heapsize 512m
-    setprop dalvik.vm.heaptargetutilization 0.6
-    setprop dalvik.vm.heapminfree 8m
-    setprop dalvik.vm.heapmaxfree 16m
-on post-fs && property:ro.vendor.hw.ram=6GB
-    setprop dalvik.vm.heapstartsize 16m
-    setprop dalvik.vm.heapgrowthlimit 256m
-    setprop dalvik.vm.heapsize 512m
-    setprop dalvik.vm.heaptargetutilization 0.5
-    setprop dalvik.vm.heapminfree 8m
-    setprop dalvik.vm.heapmaxfree 32m
-on post-fs && property:ro.vendor.hw.ram=8GB
-    setprop dalvik.vm.heapstartsize 24m
-    setprop dalvik.vm.heapgrowthlimit 256m
-    setprop dalvik.vm.heapsize 512m
-    setprop dalvik.vm.heaptargetutilization 0.46
-    setprop dalvik.vm.heapminfree 8m
-    setprop dalvik.vm.heapmaxfree 48m
+    # OTG
+    chown system system /sys/devices/virtual/oplus_chg/usb/otg_switch
+    chmod 0660 /sys/devices/virtual/oplus_chg/usb/otg_switch
 
-    # Power HAL
-    setprop vendor.powerhal.init 1
+    # CABC off
+on property:persist.cabc_profile=0
+    write /sys/kernel/oplus_display/LCM_CABC 0
+
+    # CABC on
+on property:persist.cabc_profile=1
+    write /sys/kernel/oplus_display/LCM_CABC 1
+
+    # CABC balanced
+on property:persist.cabc_profile=2
+    write /sys/kernel/oplus_display/LCM_CABC 2
+
+    # CABC aggressive
+on property:persist.cabc_profile=3
+    write /sys/kernel/oplus_display/LCM_CABC 3

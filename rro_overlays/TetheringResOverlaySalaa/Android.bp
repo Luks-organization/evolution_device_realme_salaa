@@ -1,0 +1,6 @@
+runtime_resource_overlay {
+    name: "TetheringResOverlaySalaa",
+    resource_dirs: ["res"],
+    certificate: "platform",
+    vendor: true,
+}

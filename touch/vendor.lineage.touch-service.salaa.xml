@@ -2,11 +2,9 @@
     <hal format="aidl">
         <name>vendor.lineage.touch</name>
         <version>1</version>
-        <fqname>ITouchscreenGesture/default</fqname>
-    </hal>
-    <hal format="aidl">
-        <name>vendor.lineage.touch</name>
-        <version>1</version>
-        <fqname>IHighTouchPollingRate/default</fqname>
+        <interface>
+            <name>ITouchscreenGesture</name>
+            <instance>default</instance>
+        </interface>
     </hal>
 </manifest>

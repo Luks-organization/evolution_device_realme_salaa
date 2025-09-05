@@ -29,19 +29,15 @@ const std::map<int32_t, TouchscreenGesture::GestureInfo> TouchscreenGesture::kGe
     {10, {250, "Letter O", "/proc/touchpanel/letter_o_enable"}},
     {11, {246, "Letter W", "/proc/touchpanel/letter_w_enable"}},
 };
-
+ 
 ndk::ScopedAStatus TouchscreenGesture::getSupportedGestures(std::vector<Gesture>* _aidl_return) {
     std::vector<Gesture> gestures;
 
     for (const auto& entry : kGestureInfoMap) {
-        Gesture gesture;
-        gesture.id = entry.first;
-        gesture.name = entry.second.name;
-        gesture.keycode = entry.second.keycode;
-        gestures.push_back(gesture);
+        gestures.push_back({entry.first, entry.second.name, entry.second.keycode});
     }
-    
     *_aidl_return = gestures;
+
     return ndk::ScopedAStatus::ok();
 }
 
@@ -54,10 +50,8 @@ ndk::ScopedAStatus TouchscreenGesture::setGestureEnabled(const Gesture& gesture,
     std::ofstream file(entry->second.path);
     file << (enabled ? "1" : "0");
     LOG(DEBUG) << "Wrote file " << entry->second.path << " fail " << file.fail();
-    
-    if (file.fail()) {
-        return ndk::ScopedAStatus::fromExceptionCode(EX_SERVICE_SPECIFIC);
-    }
+    if (file.fail()) return ndk::ScopedAStatus::fromExceptionCode(EX_ILLEGAL_STATE);
+
     return ndk::ScopedAStatus::ok();
 }
 

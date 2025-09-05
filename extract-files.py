@@ -171,6 +171,8 @@ blob_fixups: blob_fixups_user_type = {
        .add_needed('libbinder-v32.so'),
     'vendor/bin/hw/vendor.dolby.media.c2@1.0-service': blob_fixup()
        .add_needed('libshim_dolby.so'),
+    'vendor/lib64/hw/android.hardware.sensors@2.X-subhal-mediatek.so': blob_fixup()
+       .add_needed('android.hardware.sensors@1.0-convert-shared.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

@@ -1,53 +1,29 @@
 /*
- * SPDX-FileCopyrightText: 2014-2019 The Android Open Source Project
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 #define LOG_TAG "vendor.lineage.touch-service.salaa"
 
-#include "HighTouchPollingRate.h"
-#include "TouchscreenGesture.h"
-
 #include <android-base/logging.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
+#include "TouchscreenGesture.h"
 
-using aidl::vendor::lineage::touch::HighTouchPollingRate;
 using aidl::vendor::lineage::touch::TouchscreenGesture;
 
 int main() {
     ABinderProcess_setThreadPoolMaxThreadCount(0);
 
-    std::shared_ptr<HighTouchPollingRate> htpr = ndk::SharedRefBase::make<HighTouchPollingRate>();
     std::shared_ptr<TouchscreenGesture> tg = ndk::SharedRefBase::make<TouchscreenGesture>();
+    binder_status_t status = AServiceManager_addService(
+            tg->asBinder().get(), TouchscreenGesture::makeServiceName("default").c_str());
+    CHECK_EQ(status, STATUS_OK) << "Cannot register touchscreen gesture HAL service.";
 
-    if (htpr) {
-        const std::string instance = std::string(HighTouchPollingRate::descriptor) + "/default";
-        binder_status_t status = AServiceManager_addService(htpr->asBinder().get(), instance.c_str());
-        CHECK_EQ(status, STATUS_OK) << "Failed to add HighTouchPollingRate service: " << instance;
-    } else {
-        LOG(ERROR) << "Failed to create HighTouchPollingRate instance.";
-        return EXIT_FAILURE;
-    }
-
-    if (tg) {
-        const std::string tg_instance = std::string(TouchscreenGesture::descriptor) + "/default";
-        binder_status_t status = AServiceManager_addService(tg->asBinder().get(), tg_instance.c_str());
-        
-        if (status != STATUS_OK) {
-            LOG(ERROR) << "Failed to add TouchscreenGesture service: " << tg_instance << " with status " << status;
-            return EXIT_FAILURE;
-        } else {
-            LOG(INFO) << "TouchscreenGesture service " << tg_instance << " added successfully.";
-        }
-    } else {
-        LOG(ERROR) << "Failed to create TouchscreenGesture instance.";
-        return EXIT_FAILURE;
-    }
+    LOG(INFO) << "Touchscreen HAL service ready.";
 
     ABinderProcess_joinThreadPool();
 
-    LOG(ERROR) << "Should not reach this point in the program.";
-    return EXIT_FAILURE;
+    LOG(ERROR) << "Touchscreen HAL service failed to join thread pool.";
+    return EXIT_FAILURE;  // should not reach
 }

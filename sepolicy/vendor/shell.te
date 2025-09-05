@@ -50,6 +50,4 @@ allow shell mdns_service:service_manager find;
 allow shell netd_service:service_manager find;
 allow shell vold_service:service_manager find;
 allow shell vendor_file:file { getattr };
-allow shell vendor_rild_libpath_prop:file { read open };
-allow shell vendor_rild_libpath_prop:file { getattr map };
 allow shell wificond:binder call;

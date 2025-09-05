@@ -27,6 +27,7 @@ AB_OTA_UPDATER := false
 TARGET_OTA_ALLOW_NON_AB := true
 
 # Shipping API level
+BOARD_SHIPPING_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := 29
 
 # Userdata
@@ -39,6 +40,11 @@ PRODUCT_ENABLE_UFFD_GC := true
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+# Display
+TARGET_SCREEN_DENSITY := 440
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
 
 # Inherit several Android Go Configurations (Beneficial for everyone, even on non-Go devices)
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
@@ -88,7 +94,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     DSPVolumeSynchronizer
 
-# Oplus Parts
+# RealmePearts
 PRODUCT_PACKAGES += \
     RealmeParts
 
@@ -103,7 +109,7 @@ PRODUCT_PACKAGES += \
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
     RemovePackages
-
+    
 # Rcs Service
 PRODUCT_PACKAGES += \
     com.android.ims.rcsmanager \
@@ -170,11 +176,6 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack-service.mediatek-mali \
     libhwc2onfbadapter
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware.egl=meow \
-    ro.hardware.vulkan=mt6785 \
-    ro.opengles.version=196610
-
 # ConfigStore
 PRODUCT_PACKAGES += \
     disable_configstore
@@ -185,9 +186,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@2.0-service-multihal.MT6785 \
     vendor.lineage.oplus_als.service \
-    android.hardware.sensors@1.0-service \
-    android.hardware.sensors@1.0-impl:64 \
     sensors.als_wrapper:64 \
     sensors.oplus_virtual:64
 
@@ -245,31 +245,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
 
-# Codec2 Props
-PRODUCT_VENDOR_PROPERTIES += \
-    vendor.audio.c2.preferred=true \
-    debug.c2.use_dmabufheaps=1 \
-    vendor.qc2audio.suspend.enabled=true \
-    vendor.qc2audio.per_frame.flac.dec.enabled=true
-
-# Dolby Props
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.audio.dolby.dax.support=true \
-    ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1 \
-    vendor.audio.dolby.ds2.hardbypass=false \
-    vendor.audio.dolby.ds2.enabled=false
-
-# Spatial Audio: optimize spatializer effect
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio.spatializer.effect.util_clamp_min=300
-
-# Spatial Audio: declare use of spatial audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.audio.spatializer_enabled=true \
-    ro.audio.headtracking_enabled=true \
-    ro.audio.spatializer_transaural_enabled_default=false \
-    persist.vendor.audio.spatializer.speaker_enabled=true
-
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/seccomp,$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy)
@@ -294,24 +269,25 @@ $(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
+    OplusDozeOverlaySalaa \
+    DeviceAsWebcamOverlaySalaa \
+    FrameworksResOverlaySalaa \
+    PowerOffAlarmOverlaySalaa \
+    SettingsProviderOverlaySalaa \
+    SettingsProviderOverlayRMX2151L1 \
+    SettingsProviderOverlayRMX2155L1 \
+    SettingsProviderOverlayRMX2156L1 \
+    SettingsProviderOverlayRMX2161L1 \
+    SettingsProviderOverlayRMX2163L1 \
+    TetheringResOverlaySalaa \
+    SystemUIOverlaySalaa \
+    WifiOverlaySalaa \
+    NfcOverlaySalaa \
+    SettingsOverlaySalaa \
+    LineageSDKResTarget \
+    LineageSettingsProviderResTarget \
     SimpleDeviceConfigResTarget \
-    LineageSettingsProviderOverlay \
-    SettingsProviderOverlayR7 \
-    SettingsProviderOverlayNarzo30 \
-    SettingsProviderOverlayNarzo20Pro \
-    SettingsProviderOverlay \
-    FrameworkResOverlayPlatform \
-    TetheringConfigOverlay \
-    DeviceAsWebcamOverlay \
-    SystemUIOverlayPlatform \
-    SettingsOverlayPlatform \
-    DeviceAsWebcamOverlay \
-    TetheringConfigOverlay \
-    ApertureResOverlay \
-    LineageSDKOverlay \
-    OplusDozeOverlay \
-    WifiOverlay \
-    NfcOverlay \
+    ApertureResTarget
 
 # Public libraries
 PRODUCT_COPY_FILES += \
@@ -376,8 +352,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
-    frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml \
-    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
+    frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -386,20 +361,16 @@ PRODUCT_PACKAGES += \
     libmtkperf_client_vendor \
     libmtkperf_client
 
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
-
-PRODUCT_PACKAGES += \
-    PowerOffAlarm
-
 # Cgroup and task_profiles
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
-# Radio
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.radio.force_lte_ca=true
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+
+PRODUCT_PACKAGES += \
+    PowerOffAlarm
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -414,11 +385,7 @@ PRODUCT_PACKAGES += \
     fstab.zram \
     ueventd.mtk.rc \
     ueventd.oplus.rc \
-    parts.rc \
     nfc_detect.sh
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/init/init.recovery.mt6785.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.mt6785.rc
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -431,11 +398,6 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/lineage/compat \
     hardware/mediatek \
     hardware/oplus
-
-# Dex2oat
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat64.enabled=true \
-    pm.dexopt.bg-dexopt=everything
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -454,7 +416,6 @@ $(call soong_config_set,mediatek_vibrator,supports_effects,true)
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     libwifi-hal-wrapper:64 \
-    lib_driver_cmd_mt66xx \
     wpa_supplicant \
     libwpa_client \
     hostapd_cli \
@@ -464,14 +425,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
-# Log tag
-include $(DEVICE_PATH)/configs/props/vendor_logtag.mk
+# InitRecovery
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/init/init.recovery.mt6785.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.mt6785.rc
 
 # DoubleTapToWake
 $(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(DEVICE_PATH):libperfmgr-ext-salaa)
 
-# Init
+
+# InitSalaa
 $(call soong_config_set,libinit,vendor_init_lib,//$(DEVICE_PATH):libinit_salaa)
+
+# Log tag
+include $(DEVICE_PATH)/configs/props/vendor_logtag.mk
 
 # Inherit vendor the proprietary files
 $(call inherit-product, vendor/realme/salaa/salaa-vendor.mk)

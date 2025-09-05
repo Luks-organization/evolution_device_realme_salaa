@@ -33,3 +33,11 @@ cc_prebuilt_library_shared {
     check_elf_files: false,
     vendor: true,
 }
+
+cc_library_shared {
+    name: "android.hardware.graphics.common-V2-ndk_platform",
+    shared_libs: [
+        "android.hardware.graphics.common-V2-ndk",
+    ],
+    vendor: true,
+}

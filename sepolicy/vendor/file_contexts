@@ -2,23 +2,13 @@
 /data/vendor/camera_update(/.*)?                                                                        u:object_r:vendor_camera_update_data_file:s0
 /mnt/vendor/persist/camera(/.*)?                                                                        u:object_r:persist_camera_file:s0
 /(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.engcamera@1\.0-service                                u:object_r:mtk_hal_camera_exec:s0
-
-# Graphics
-/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator@2\.0\.so                        u:object_r:same_process_hal_file:s0
-/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator@3\.0\.so                        u:object_r:same_process_hal_file:s0
-/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.allocator@4\.0\.so                        u:object_r:same_process_hal_file:s0
-/(vendor|system/vendor)/lib(64)?/android\.hardware\.graphics\.common-V6-ndk\.so                         u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/android\.hardware\.graphics\.mapper@2\.0\.so                                           u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/android\.hardware\.graphics\.mapper@2\.1\.so                                           u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/android\.hardware\.graphics\.mapper@3\.0\.so                                           u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/android\.hardware\.graphics\.mapper@4\.0\.so                                           u:object_r:same_process_hal_file:s0
-
-# egl
-/(vendor|system/vendor)/lib(64)/egl/libGLES_mali\.so                                                    u:object_r:same_process_hal_file:s0
-/(vendor|system/vendor)/lib(64)/egl/libGLES_meow\.so                                                    u:object_r:same_process_hal_file:s0
-
-# libui
-/(vendor|system/vendor)/lib(64)?/libui\.so                                                              u:object_r:same_process_hal_file:s0
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.cammidasservice@1\.0-service                          u:object_r:mtk_hal_camera_exec:s0
+/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.allocator@2\.0\.so                                  u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.allocator@3\.0\.so                                  u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.allocator@4\.0\.so                                  u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.common-V2-ndk_platform\.so                          u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.common-V2-ndk\.so                                   u:object_r:same_process_hal_file:s0
+/(vendor|odm)/lib(64)?/android\.hardware\.graphics\.common-V6-ndk\.so                                   u:object_r:same_process_hal_file:s0
 
 # Charging
 /dev/oplus_chg                                                                                          u:object_r:oplus_charger_device:s0
@@ -31,6 +21,7 @@
 /sys/devices/platform/leds-mt65xx/leds/lcd-backlight(/.*)?                                              u:object_r:sysfs_leds:s0
 
 # Sensors
+/(vendor|system/vendor)/bin/hw/android\.hardware\.sensors@2\.0-service-multihal\.MT6785                 u:object_r:hal_sensors_default_exec:s0
 /(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.oplusSensor@1\.0-service                              u:object_r:hal_sensors_default_exec:s0
 /dev/m_virtual_sensor_misc                                                                              u:object_r:virtual_sensor_device:s0
 /dev/block/sdc4                                                                                         u:object_r:oplus_block_device:s0
@@ -64,6 +55,9 @@
 /(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.biometrics\.fingerprint@2\.1-service                  u:object_r:hal_fingerprint_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.oplus           u:object_r:hal_fingerprint_default_exec:s0
 
+# OplusPerf
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.performance@1\.0-service                              u:object_r:hal_performance_oplus_exec:s0
+
 # Emmc 
 /sys/devices/platform/11270000.ufshci/mmc_host/mmc0/mmc0:0001(/.*)?                                     u:object_r:emmc_base_info_node:s0
 /sys/devices/platform/soc/11270000.ufshci/mmc_host/mmc0/mmc0:0001(/.*)?                                 u:object_r:emmc_base_info_node:s0
@@ -76,10 +70,6 @@
 # NFC
 /dev/pn553                                                                                              u:object_r:nfc_device:s0
 /(vendor|system/vendor)/bin/nfc_detect\.sh                                                              u:object_r:nfc_detect_exec:s0
-
-# Oplus Touch
-/data/vendor/touch(/.*)?                                                                                u:object_r:vendor_persist_oplus_touch_file:s0
-/data/vendor/touchconfig(/.*)?                                                                          u:object_r:vendor_persist_oplus_touch_file:s0
 
 # Lineage Touch
 /(vendor|system/vendor)/bin/hw/vendor\.lineage\.touch-service\.salaa                                    u:object_r:hal_lineage_touch_default_exec:s0

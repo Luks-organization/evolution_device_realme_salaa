@@ -1,0 +1,7 @@
+runtime_resource_overlay {
+    name: "WifiOverlay",
+    theme: "WifiOverlaySalaa",
+    resource_dirs: ["res"],
+    certificate: "platform",
+    vendor: true,
+}

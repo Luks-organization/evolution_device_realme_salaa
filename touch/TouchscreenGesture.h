@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#ifndef VENDOR_LINEAGE_TOUCH_TOUCHSCREENGESTURE_H
-#define VENDOR_LINEAGE_TOUCH_TOUCHSCREENGESTURE_H
+#pragma once
 
 #include <aidl/vendor/lineage/touch/BnTouchscreenGesture.h>
 #include <map>
@@ -18,7 +17,6 @@ namespace touch {
 
 class TouchscreenGesture : public BnTouchscreenGesture {
   public:
-    // Methods from ::aidl::vendor::lineage::touch::BnTouchscreenGesture follow.
     ndk::ScopedAStatus getSupportedGestures(std::vector<Gesture>* _aidl_return) override;
     ndk::ScopedAStatus setGestureEnabled(const Gesture& gesture, bool enabled) override;
 
@@ -35,5 +33,3 @@ class TouchscreenGesture : public BnTouchscreenGesture {
 }  // namespace lineage
 }  // namespace vendor
 }  // namespace aidl
-
-#endif  // VENDOR_LINEAGE_TOUCH_TOUCHSCREENGESTURE_H

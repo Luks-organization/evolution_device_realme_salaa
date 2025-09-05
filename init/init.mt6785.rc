@@ -6,20 +6,23 @@ import /vendor/etc/init/hw/init.project.rc
 import /vendor/etc/init/hw/init.sensor_1_0.rc
 import /vendor/etc/init/hw/init.modem.rc
 import /vendor/etc/init/hw/init.oplus.rc
-import /system_ext/etc/init/kpoc_charger.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
+
+    # Rildlibpath
+    setprop vendor.rild.libpath ${vendor_mtk_radio_prop}
+    setprop vendor.rild.libargs ${vendor_mtk_radio_prop}
 
     # Early CCI configuration
     write /sys/class/net/ccmni0/queues/rx-0/rps_cpus "0f"
     write /sys/class/net/ccmni1/queues/rx-0/rps_cpus "0f"
     write /sys/class/net/ccmni2/queues/rx-0/rps_cpus "0f"
 
-    # Workarround for cache
-    rm /data/resource-cache
-    rm /data/system/package_cache
+    # Touchpanel
+    write /proc/touchpanel/oplus_tp_limit_enable 0
+    write /proc/touchpanel/oplus_tp_direction 1
 
 # We need vold early for metadata encryption
 on early-fs
@@ -701,6 +704,12 @@ on boot
     # OTG
     write /sys/class/power_supply/usb/otg_switch 1
 
+on property:sys.boot_completed=1
+    restart android-hardware-media-c2-hal-1-2
+
+    # Enable suspend to RAM
+    write /sys/power/mem_sleep "deep"
+
     # Power HAL
     setprop vendor.powerhal.init 1
 
@@ -754,16 +763,6 @@ on property:persist.vendor.mediatek.fg.log.enable=1
     write /sys/devices/platform/battery_meter/FG_daemon_log_level 7
     write /sys/bus/platform/devices/battery/FG_daemon_log_level 7
     write /proc/sys/kernel/printk 8
-    
-    # add meta_tst for ATM
-service meta_tst /vendor/bin/meta_tst
-    class core
-    user root
-    group radio gps system wifi audio bluetooth media
-    capabilities NET_RAW NET_ADMIN
-    socket meta-atci stream 660 radio system
-    disabled
-    oneshot
 
     # Factory
 service factory_no_image /vendor/bin/factory
@@ -781,29 +780,3 @@ on property:sys.boot_completed=1 && property:ro.boot.atm=enable
     # reset mdmode when modem crash happens in ATM
 on property:vendor.mtk.md1.status=reset
     setprop persist.vendor.atm.mdmode normal
-
-    # C2 media
-on property:sys.boot_completed=1
-    restart android-hardware-media-c2-hal-1-2
-
-    # VSIM service (vendor OSI)
-service osi /system/bin/osi
-    class main
-    user root
-    disabled
-    oneshot
-    #seclabel u:r:osi:s0
-
-service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
-    override
-    class hal
-    user audioserver
-    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
-    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock context_hub system
-    capabilities BLOCK_SUSPEND SYS_NICE
-    # setting RLIMIT_RTPRIO allows binder RT priority inheritance
-    rlimit rtprio 10 10
-    ioprio rt 4
-    task_profiles ProcessCapacityHigh HighPerformance
-    socket audio_hw_socket seqpacket 0666 system system
-    onrestart restart audioserver
