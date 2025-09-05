@@ -28,6 +28,7 @@ set_prop(vendor_init, vendor_audio_tuning_prop)
 set_prop(vendor_init, system_sensors_als_prop)
 set_prop(vendor_init, bluetooth_prop)
 set_prop(vendor_init, default_prop)
+set_prop(vendor_init, radio_prop)
 set_prop(vendor_init, build_prop)
 
 rw_dir_file(vendor_init, sysfs_leds)

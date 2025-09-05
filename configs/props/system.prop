@@ -51,6 +51,7 @@ ro.sf.blurs_are_expensive=1
 
 # SurfaceFlinger
 debug.graphics.game_default_frame_rate.disabled=true
+debug.sf.recomputecrop=0
 debug.sf.auto_latch_unsignaled=0
 debug.sf.defer_refresh_rate_when_off=1
 debug.sf.disable_backpressure=1
@@ -75,8 +76,10 @@ debug.sf.late.sf.duration=27600000
 debug.sf.predict_hwc_composition_strategy=0
 debug.sf.treat_170m_as_sRGB=1
 debug.sf.use_phase_offsets_as_durations=1
+debug.sf.layer_caching_active_layer_timeout_ms=1000
 
 # HWUI
+debug.hwui.trace_gpu_resources=false
 debug.hwui.render_dirty_regions=true
 debug.hwui.renderer=opengl
 debug.hwui.skia_atrace_enabled=false
