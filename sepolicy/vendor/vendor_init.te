@@ -18,6 +18,7 @@ allow vendor_init nfc_data_vendor_file:dir create_dir_perms;
 
 rw_dir_file(vendor_init, sysfs_leds)
 
+get_prop(vendor_init, system_oplus_project_prop)
 get_prop(vendor_init, vendor_variant_prop)
 
 set_prop(vendor_init, vendor_oplus_prop)

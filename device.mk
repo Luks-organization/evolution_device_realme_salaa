@@ -47,6 +47,9 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/boot/boot-image-profile.txt
 
+# Speed profile services and wifi-service to reduce RAM and storage
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER ?= speed-profile
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio.service \
@@ -163,14 +166,14 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.base@1.0.vendor \
-    android.hidl.manager@1.0 \
-    android.hidl.manager@1.0.vendor \
+    android.hidl.safe_union@1.0.vendor \
     libhidltransport \
-    libhidltransport.vendor \
+    libhardware \
     libhwbinder \
-    libhwbinder.vendor
+    libhidltransport.vendor \
+    libhardware.vendor \
+    libhwbinder.vendor \
+    libhidlmemory.vendor
 
 # Graphics
 PRODUCT_PACKAGES += \

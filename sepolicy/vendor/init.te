@@ -33,5 +33,6 @@ get_prop(init, vendor_mtk_mnld_prop)
 get_prop(init, vendor_mtk_radio_prop)
 get_prop(init, vendor_oplus_prop)
 get_prop(init, vendor_audio_tuning_prop)
+get_prop(init, exported_system_prop)
 
 set_prop(init, system_oplus_project_prop)
