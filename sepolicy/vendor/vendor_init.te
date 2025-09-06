@@ -16,19 +16,18 @@ allow vendor_init mtk_radio_device:lnk_file { unlink };
 allow vendor_init nfc_data_vendor_file:dir r_dir_perms;
 allow vendor_init nfc_data_vendor_file:dir create_dir_perms;
 
-get_prop(vendor_init, vendor_variant_prop)
-get_prop(vendor_init, default_prop)
+rw_dir_file(vendor_init, sysfs_leds)
 
-set_prop(vendor_init, exported_system_prop)
+get_prop(vendor_init, vendor_variant_prop)
+
+set_prop(vendor_init, vendor_oplus_prop)
 set_prop(vendor_init, vendor_mtk_pq_prop)
 set_prop(vendor_init, vendor_persist_light_prop)
-set_prop(vendor_init, vendor_power_prop)
-set_prop(vendor_init, vendor_oplus_prop)
 set_prop(vendor_init, vendor_audio_tuning_prop)
+set_prop(vendor_init, vendor_power_prop)
 set_prop(vendor_init, system_sensors_als_prop)
+set_prop(vendor_init, system_oplus_project_prop)
+set_prop(vendor_init, exported_system_prop)
 set_prop(vendor_init, bluetooth_prop)
 set_prop(vendor_init, default_prop)
 set_prop(vendor_init, radio_prop)
-set_prop(vendor_init, build_prop)
-
-rw_dir_file(vendor_init, sysfs_leds)

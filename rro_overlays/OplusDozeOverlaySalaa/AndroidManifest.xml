@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: The Android Open Source Project
-     SPDX-FileCopyrightText: The LineageOS Project
+     Copyright (C) The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.lineageos.settings.doze.overlay">
-
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
-
-    <application android:hasCode="false" />
+    package="org.lineageos.settings.doze.overlay.salaa">
 
     <overlay 
         android:isStatic="true"
         android:priority="600"
         android:targetPackage="com.android.settings"
         android:targetName="Settings" />
-
 </manifest>

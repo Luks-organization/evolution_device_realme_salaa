@@ -25,11 +25,13 @@ allow init proc_dirty:file rw_file_perms;
 allow init proc_drop_caches:file rw_file_perms;
 allow init proc_sched_migration_cost_ns:file rw_file_perms;
 
-get_prop(init, vendor_audio_tuning_prop)
-get_prop(init, system_oplus_project_prop)
 get_prop(init, system_cabc_prop)
+get_prop(init, system_oplus_project_prop)
+get_prop(init, system_oplus_project_prop)
 get_prop(init, vendor_variant_prop)
 get_prop(init, vendor_mtk_mnld_prop)
 get_prop(init, vendor_mtk_radio_prop)
 get_prop(init, vendor_oplus_prop)
-get_prop(init, build_prop)
+get_prop(init, vendor_audio_tuning_prop)
+
+set_prop(init, system_oplus_project_prop)

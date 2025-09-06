@@ -6,6 +6,7 @@ demo.far                                         u:object_r:exported_system_prop
 demo.fb                                          u:object_r:exported_system_prop:s0
 oplus.CTP.Tunningmode                            u:object_r:exported_system_prop:s0
 oplus.debug.nvram.enable                         u:object_r:exported_system_prop:s0
+persist.sys.oppo.region                          u:object_r:exported_system_prop:s0
 persist.bps.debug                                u:object_r:exported_system_prop:s0
 persist.camera.                                  u:object_r:exported_system_prop:s0
 persist.sys.camera.log.                          u:object_r:exported_system_prop:s0
@@ -36,9 +37,6 @@ ro.audio.monitorWindowRotation                   u:object_r:exported_system_prop
 ro.audio.monitorRotation                         u:object_r:exported_system_prop:s0
 ro.hardware.chipname                             u:object_r:exported_system_prop:s0
 
-# Region
-persist.sys.oppo.region                          u:object_r:exported_system_prop:s0
-
 # Fingerprint
 oplus.fingerprint.                               u:object_r:system_fingerprint_prop:s0
 oplus.optical.                                   u:object_r:system_fingerprint_prop:s0
@@ -53,11 +51,10 @@ sys.oplus.mm.                                    u:object_r:system_oplus_audio_p
 audio.tuning.def_path                            u:object_r:system_oplus_audio_prop:s0
 
 # Market name
-ro.product.marketname                            u:object_r:build_prop:s0
-ro.evolution.version	                         u:object_r:build_prop:s0
-ro.oplus.market.name                             u:object_r:build_prop:s0
-ro.vendor.oplus.market.name                      u:object_r:build_prop:s0
-vendor.usb.product_string                        u:object_r:build_prop:s0
+ro.product.marketname                            u:object_r:system_oplus_project_prop:s0
+ro.oplus.market.name                             u:object_r:system_oplus_project_prop:s0
+ro.vendor.oplus.market.name                      u:object_r:system_oplus_project_prop:s0
+vendor.usb.product_string                        u:object_r:system_oplus_project_prop:s0
 
 # Version
 ro.oplus.image.                                  u:object_r:system_oplus_project_prop:s0
@@ -83,3 +80,6 @@ ro.oplus.mtk_gps_L1L5                            u:object_r:exported_system_prop
 # Modem
 ro.oplus.operator                                u:object_r:exported_system_prop:s0
 persist.oplus.network.                           u:object_r:exported_system_prop:s0
+
+# EvoVersion
+ro.evolution.version	                         u:object_r:build_prop:s0

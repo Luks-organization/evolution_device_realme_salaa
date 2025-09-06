@@ -1,5 +1,3 @@
-# Device proprietary files - from RMX2156_11_F.18, unless pinned
-
 # AAL
 vendor/lib/libaal_cust.so
 vendor/lib/libaal_key.so
@@ -1517,6 +1515,8 @@ vendor/lib64/mediadrm/libwvdrmengine.so
 vendor/lib64/libtlcWidevineModularDrm.so
 vendor/lib64/liburee_meta_drmkeyinstall.so
 vendor/lib64/libwvhidl.so
+
+# Device proprietary files - from RMX2156_11_F.18, unless pinned
 
 # Dirac Audio
 #odm/lib/libDiracAPI_SHARED.so:vendor/lib/libDiracAPI_SHARED.so

@@ -1,5 +1,0 @@
-runtime_resource_overlay {
-    name: "LineageSettingsProviderResTarget",
-    resource_dirs: ["res"],
-    product_specific: true,
-}

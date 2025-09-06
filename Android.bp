@@ -5,7 +5,10 @@
 //
 
 soong_namespace {
-
+    imports: [
+        "bootable/deprecated-ota",
+        "hardware/oplus",
+    ],
 }
 
 cc_library_shared {

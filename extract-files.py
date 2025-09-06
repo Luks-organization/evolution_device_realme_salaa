@@ -178,7 +178,7 @@ blob_fixups: blob_fixups_user_type = {
 module = ExtractUtilsModule(
     'salaa',
     'realme',
-    blob_fixups=blob_fixups,
+    #blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
     add_firmware_proprietary_file=True,

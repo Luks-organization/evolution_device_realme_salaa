@@ -97,7 +97,6 @@ renderthread.skia.reduceopstasksplitting=true
 # Camera
 persist.camera.HAL3.enabled=1
 persist.camera.eis.enable=1
-persist.vendor.camera.privapp.list=com.android.camera,com.google.camera,org.lineageos.aperture,org.lineageos.aperture.dev
 ro.camera.hfr.enable=1
 ro.camera.high.resolution.video.filter.enable=1
 ro.camera.ignore.input.stream.check.enable=1
@@ -105,8 +104,8 @@ ro.camera.portrait.blur.level.enable=1
 ro.camera.temperature.limit=440
 ro.camera.videoeis.enable=
 ro.mtk_cam.mfb.ultimate=1
-vendor.camera.aux.packageexcludelist=org.telegram.messenger,com.microsoft.teams,com.discord,us.zoom.videomeetings
-vendor.camera.aux.packagelist=com.android.camera,com.google.camera,org.lineageos.aperture,org.lineageos.aperture.dev
+ro.mtk_cam_dualzoom_support=1
+ro.mtk_cam_stereo_camera_support=0
 
 # Memory management
 persist.sys.fw.bg_apps_limit?=48

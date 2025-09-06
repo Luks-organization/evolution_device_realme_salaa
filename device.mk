@@ -26,15 +26,12 @@ PRODUCT_BUILD_SUPER_PARTITION ?= false
 AB_OTA_UPDATER := false
 TARGET_OTA_ALLOW_NON_AB := true
 
+PRODUCT_SOONG_NAMESPACES += \
+    bootable/deprecated-ota
+
 # Shipping API level
 BOARD_SHIPPING_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := 29
-
-# Userdata
-PRODUCT_FS_COMPRESSION := 1
-
-# Kernel
-PRODUCT_ENABLE_UFFD_GC := true
 
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
@@ -90,6 +87,24 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/aurisys/aurisys_config_hifi3.xml:$(TARGET_COPY_OUT_ODM)/etc/audio/aurisys_config_hifi3/aurisys_config_hifi3.xml \
     $(DEVICE_PATH)/configs/aurisys/virtual_audio_policy_configuration.xml:$(TARGET_COPY_OUT_ODM)/etc/virtual_audio_policy_configuration.xml
 
+# Rcs Service
+PRODUCT_PACKAGES += \
+    com.android.ims.rcsmanager \
+    RcsProvisioning \
+    PresencePolling \
+    CarrierServices \
+    CarrierConfig \
+    Messenger \
+    RcsService
+
+# Mtk In Call Service
+PRODUCT_PACKAGES += \
+    MtkInCallService
+
+# Vendor Service Manager
+PRODUCT_PACKAGES += \
+    vndservicemanager
+
 # Dsp Volume Synchronizer
 PRODUCT_PACKAGES += \
     DSPVolumeSynchronizer
@@ -110,23 +125,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     RemovePackages
     
-# Rcs Service
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    RcsProvisioning \
-    PresencePolling \
-    CarrierServices \
-    CarrierConfig \
-    Messenger \
-    RcsService
+# Userdata
+PRODUCT_FS_COMPRESSION := 1
 
-# Mtk In Call Service
-PRODUCT_PACKAGES += \
-    MtkInCallService
-
-# Vendor Service Manager
-PRODUCT_PACKAGES += \
-    vndservicemanager
+# Kernel
+PRODUCT_ENABLE_UFFD_GC := true
 
 # Biometrics
 PRODUCT_PACKAGES += \
@@ -150,6 +153,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     libcamera2ndk_vendor \
+    libperfctl_vendor \
     liblz4.vendor
 
 # DRM
@@ -267,27 +271,26 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,android_hardware_mediatek_usb,audio_accessory_supported,true)
 
 # Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    $(DEVICE_PATH)/overlay \
+    $(DEVICE_PATH)/overlay-lineage \
+    $(DEVICE_PATH)/overlay-evolution
+
+# RRO (Runtime Resource Overlay)
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
-    OplusDozeOverlaySalaa \
-    DeviceAsWebcamOverlaySalaa \
-    FrameworksResOverlaySalaa \
-    PowerOffAlarmOverlaySalaa \
-    SettingsProviderOverlaySalaa \
     SettingsProviderOverlayRMX2151L1 \
     SettingsProviderOverlayRMX2155L1 \
     SettingsProviderOverlayRMX2156L1 \
     SettingsProviderOverlayRMX2161L1 \
     SettingsProviderOverlayRMX2163L1 \
+    DeviceAsWebcamOverlaySalaa \
+    PowerOffAlarmOverlaySalaa \
     TetheringResOverlaySalaa \
-    SystemUIOverlaySalaa \
+    OplusDozeOverlaySalaa \
+    ApertureResOverlay \
     WifiOverlaySalaa \
-    NfcOverlaySalaa \
-    SettingsOverlaySalaa \
-    LineageSDKResTarget \
-    LineageSettingsProviderResTarget \
-    SimpleDeviceConfigResTarget \
-    ApertureResTarget
+    NfcOverlaySalaa
 
 # Public libraries
 PRODUCT_COPY_FILES += \
@@ -391,11 +394,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH) \
     $(DEVICE_PATH)/touch \
-    bootable/deprecated-ota \
+    hardware/mediatek/libmtkperf_client \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/mediatek/libmtkperf_client \
-    hardware/lineage/compat \
     hardware/mediatek \
     hardware/oplus
 

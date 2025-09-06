@@ -6,15 +6,15 @@ allow system_app sysfs_zram:file r_file_perms;
 allow system_app proc_pagetypeinfo:file r_file_perms;
 allow system_app zygote:unix_stream_socket { getopt };
 
-allow system_app vendor_sysfs_graphics:dir search;
+allow system_app vendor_sysfs_graphics:dir { search };
 allow system_app vendor_sysfs_graphics:file rw_file_perms;
 allow system_app vendor_sysfs_usb_supply:dir search;
 allow system_app vendor_sysfs_usb_supply:file rw_file_perms;
-allow system_app vendor_sysfs_otg_switch:dir search;
+allow system_app vendor_sysfs_otg_switch:dir { search };
 allow system_app vendor_sysfs_otg_switch:file rw_file_perms;
-allow system_app vendor_sysfs_battery_supply:dir search;
+allow system_app vendor_sysfs_battery_supply:dir { search };
 allow system_app vendor_sysfs_battery_supply:file rw_file_perms;
-allow system_app vendor_proc_display:dir search;
+allow system_app vendor_proc_display:dir { search };
 allow system_app vendor_proc_display:file rw_file_perms;
 allow system_app sysfs_therm:file r_file_perms;
 allow system_app mtk_hal_bluetooth:service_manager find;
@@ -22,6 +22,9 @@ allow system_app mtk_hal_bluetooth:binder { transfer call };
 allow system_app netd:service_manager find;
 allow system_app netd:binder { transfer call };
 allow system_app proc_filesystems:file r_file_perms;
+
+get_prop(system_app, system_oplus_project_prop)
+set_prop(system_app, system_oplus_project_prop)
 
 binder_call(system_app, hal_audio_default)
 binder_call(system_app, hal_health_default)

@@ -1,4 +1,4 @@
 get_prop(rild, system_oplus_project_prop)
-get_prop(rild, vendor_mtk_radio_prop)
 set_prop(rild, system_oplus_project_prop)
+get_prop(rild, vendor_mtk_radio_prop)
 set_prop(rild, vendor_mtk_radio_prop)
